@@ -1,7 +1,9 @@
 import { useState } from 'react';
+import { Routes, Route } from 'react-router-dom';
 import './App.css';
-import SignInForm from './components/SignInForm';
-import SignUpForm from './components/SignUpForm';
+import SignInForm from './components/SignForm/SignInForm';
+import SignUpForm from './components/SignForm/SignUpForm';
+import Todo from './pages/Todo';
 
 function App() {
     let [type, setType] = useState('sign-in');
@@ -19,45 +21,74 @@ function App() {
     return (
         <div className='App'>
             <div className={containerClass} id='container'>
-                <SignInForm />
-                <SignUpForm />
-                <div className='overlay-container'>
-                    <div className='overlay'>
-                        <div className='overlay-panel overlay-left'>
-                            <div className='title'>Welcome Back!</div>
-                            <div className='description'>
-                                Enter your personal details
-                                <br />
-                                to use my planner
-                            </div>
-                            <button
-                                className='white-button'
-                                id='sign-in'
-                                onClick={() => {
-                                    handleClick('sign-in');
-                                }}
-                            >
-                                Sign In
-                            </button>
-                        </div>
-                        <div className='overlay-panel overlay-right'>
-                            <div className='title'>New Here?</div>
-                            <div className='description'>
-                                Register with your personal details <br />
-                                to use my planner
-                            </div>
-                            <button
-                                className='white-button'
-                                id='sign-up'
-                                onClick={() => {
-                                    handleClick('sign-up');
-                                }}
-                            >
-                                Sign Up
-                            </button>
-                        </div>
-                    </div>
-                </div>
+                <Routes>
+                    <Route
+                        path='/login'
+                        element={
+                            <>
+                                <SignInForm />
+                                <SignUpForm />
+                                <div className='overlay-container'>
+                                    <div className='overlay'>
+                                        <div className='overlay-panel overlay-left'>
+                                            <div className='title'>
+                                                Welcome Back!
+                                            </div>
+                                            <div className='description'>
+                                                Enter your personal details
+                                                <br />
+                                                to use my planner
+                                            </div>
+                                            <button
+                                                className='white-button'
+                                                id='sign-in'
+                                                onClick={() => {
+                                                    handleClick('sign-in');
+                                                }}
+                                            >
+                                                Sign In
+                                            </button>
+                                        </div>
+                                        <div className='overlay-panel overlay-right'>
+                                            <div className='title'>
+                                                New Here?
+                                            </div>
+                                            <div className='description'>
+                                                Register with your personal
+                                                details <br />
+                                                to use my planner
+                                            </div>
+                                            <button
+                                                className='white-button'
+                                                id='sign-up'
+                                                onClick={() => {
+                                                    handleClick('sign-up');
+                                                }}
+                                            >
+                                                Sign Up
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </>
+                        }
+                    />
+                    <Route path='/todo' element={<Todo />}>
+                        <Route path='goals' element={<div>goals</div>} />
+                        <Route
+                            path='timer-setting'
+                            element={<div>timer-setting</div>}
+                        />
+                        <Route
+                            path='timetable'
+                            element={<div>timetable</div>}
+                        />
+                        <Route
+                            path='my-account'
+                            element={<div>my-account</div>}
+                        />
+                    </Route>
+                </Routes>
             </div>
         </div>
     );
