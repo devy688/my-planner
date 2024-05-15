@@ -1,0 +1,30 @@
+nav {
+    display: flex;
+    flex-direction: center;
+    align-items: center;
+    font-family: 'Inter', sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+    color: #f9f9f9;
+    position: absolute;
+    top: -35px;
+    left: 450px;
+}
+
+.list {
+    width: 100px;
+    height: 35px;
+    background-color: #94b2ec;
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 5px;
+    border-radius: 10px 10px 0 0;
+    cursor: pointer;
+}
+
+.list:active {
+    transform: scale(0.98);
+}

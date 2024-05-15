@@ -1,0 +1,28 @@
+.profile-card {
+    padding: 30px;
+    display: flex;
+    align-items: center;
+    position: absolute;
+    top: 0;
+}
+
+.avatar {
+    width: 64px;
+    height: 64px;
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 20px;
+}
+
+.user-name {
+    font-family: 'Inter', sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 24px;
+    margin-bottom: 5px;
+}
