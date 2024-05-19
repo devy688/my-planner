@@ -1,0 +1,188 @@
+@import url('../../styles.css');
+
+.category-list {
+    overflow: auto;
+    width: 100%;
+    height: 100%;
+}
+
+.category {
+    margin-bottom: 8px;
+}
+
+.category-header {
+    background-color: var(--light-grey-color);
+    padding: 8px 15px;
+    border-radius: 15px;
+    border: none;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.category-header .title {
+    margin-right: 7px;
+    font-size: 16px;
+}
+
+.category-header .icon.plus {
+    background-color: var(--white-color);
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+}
+
+.item-list-container {
+    padding: 10px;
+}
+
+.todo-item-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+.todo-item {
+    display: flex;
+    align-items: center;
+}
+
+.check-box {
+    margin-right: 5px;
+}
+
+.todo-item .todo-text-input {
+    border: none;
+    background-color: transparent;
+}
+
+input[type='text']:disabled {
+    color: var(--black-color);
+}
+
+.todo-text-input.isEditing {
+    border: none;
+    margin-right: 5px;
+    background-color: transparent;
+}
+
+.todo-text-input.isEditing:focus {
+    outline: none;
+}
+
+.todo-text-input.blue {
+    border-bottom: 2px solid var(--blue-color);
+    background-color: transparent;
+}
+
+.todo-text-input.red {
+    border-bottom: 2px solid var(--red-color);
+    background-color: transparent;
+}
+
+.todo-text-input.green {
+    border-bottom: 2px solid var(--green-color);
+    background-color: transparent;
+}
+
+.todo-item-container .icons {
+    display: flex;
+    align-items: center;
+}
+
+.icons .icon {
+    margin-right: 8px;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.icon.play {
+    font-size: 20px;
+}
+
+.todo-item-container .icon:active {
+    transform: scale(1.1);
+}
+
+@keyframes showTaskInput {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.add-todo-container {
+    display: flex;
+    align-items: center;
+    animation: showTaskInput 0.5s ease forwards;
+}
+
+.add-todo-container .icon {
+    font-size: 20px;
+}
+
+.add-todo-input {
+    width: 50%;
+    border: none;
+    margin-right: 5px;
+    background-color: transparent;
+}
+
+.icon.check {
+    cursor: pointer;
+}
+
+.icon.check:active {
+    transform: scale(1.1);
+}
+
+.add-todo-container input {
+    border: none;
+    background-color: transparent;
+}
+
+.add-todo-container input.blue {
+    border-bottom: 2px solid var(--blue-color);
+    background-color: transparent;
+}
+
+.add-todo-container input.red {
+    border-bottom: 2px solid var(--red-color);
+    background-color: transparent;
+}
+
+.add-todo-container input.green {
+    border-bottom: 2px solid var(--green-color);
+    background-color: transparent;
+}
+
+.add-todo-input:focus {
+    outline: none;
+}
+
+.title.blue {
+    color: var(--blue-color);
+}
+
+.title.red {
+    color: var(--red-color);
+}
+
+.title.green {
+    color: var(--green-color);
+}
+
+.blue:checked {
+    accent-color: var(--blue-color);
+}
+
+.red:checked {
+    accent-color: var(--red-color);
+}
+
+.green:checked {
+    accent-color: var(--green-color);
+}
