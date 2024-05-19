@@ -1,0 +1,6 @@
+.days {
+    font-weight: 600;
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 8px;
+}

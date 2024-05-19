@@ -1,0 +1,90 @@
+@import url('../../styles.css');
+
+.calendar .body {
+    width: 100%;
+    height: 100%;
+}
+
+.body .row {
+    display: flex;
+    justify-content: space-around;
+}
+
+.col.cell {
+    display: flex;
+    flex-direction: column;
+}
+
+.col.disabled {
+    opacity: 0;
+}
+
+.col.selected {
+}
+
+.col.not-valid {
+}
+
+.col.valid {
+}
+
+.col .day-icon {
+    width: 30px;
+    height: 30px;
+    border-radius: 10px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--light-grey-color);
+}
+
+.day-icon:active {
+    transform: scale(0.95);
+}
+
+.day-icon .top {
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+
+.top .one-quarter {
+    width: 50%;
+    height: 100%;
+}
+.top .two-quarter {
+    width: 50%;
+    height: 100%;
+}
+
+.day-icon .bottom {
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+
+.bottom .three-quarter {
+    width: 50%;
+    height: 100%;
+}
+
+.bottom .four-quarter {
+    width: 50%;
+    height: 100%;
+}
+
+.day-text {
+    text-align: center;
+    margin-top: 5px;
+    padding-top: 4px;
+}
+
+.body .row {
+    margin-bottom: 5px;
+}
+
+.col.selected .day-text {
+    background-color: var(--black-color);
+    color: var(--white-color);
+    border-radius: 10px;
+}

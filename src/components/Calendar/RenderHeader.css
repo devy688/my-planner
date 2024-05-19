@@ -1,0 +1,22 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px;
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+.col-start {
+}
+
+.col-end {
+}
+
+.col-end .icon {
+    cursor: pointer;
+}
+
+.icon.left {
+    margin-right: 5px;
+}
