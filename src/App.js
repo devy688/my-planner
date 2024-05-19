@@ -4,6 +4,7 @@ import './App.css';
 import SignInForm from './components/SignForm/SignInForm';
 import SignUpForm from './components/SignForm/SignUpForm';
 import Todo from './pages/Todo';
+import List from './components/List/List';
 
 function App() {
     let [type, setType] = useState('sign-in');
@@ -74,6 +75,7 @@ function App() {
                         }
                     />
                     <Route path='/todo' element={<Todo />}>
+                        <Route path='list' element={<List />} />
                         <Route path='goals' element={<div>goals</div>} />
                         <Route
                             path='timer-setting'
