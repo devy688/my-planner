@@ -1,47 +1,9 @@
 import React, { useState } from 'react';
 import { Icon } from '@iconify/react';
-import './Category.css';
+import './TodoForm.css';
 
-export default function Category() {
-    let data = [
-        {
-            id: 0,
-            title: 'workout',
-            lists: [
-                {
-                    id: '0-1',
-                    name: '런닝하기',
-                    isCompleted: false,
-                },
-            ],
-            color: 'blue',
-        },
-        {
-            id: 1,
-            title: 'coding',
-            lists: [
-                {
-                    id: '1-1',
-                    name: '코딩애플 강의듣기',
-                    isCompleted: true,
-                },
-                {
-                    id: '1-2',
-                    name: '프로그래머스 문제 풀기',
-                    isCompleted: false,
-                },
-            ],
-            color: 'red',
-        },
-        {
-            id: 2,
-            title: 'daily',
-            lists: [],
-            color: 'green',
-        },
-    ];
-
-    const [categories, setCategories] = useState(data);
+export default function TodoForm({ todoData }) {
+    const [categories, setCategories] = useState(todoData);
     const [categoryId, setCategoryId] = useState('');
     const [listId, setListId] = useState('');
 

@@ -7,7 +7,7 @@ export default function SignInForm() {
 
     return (
         <div className='form-container sign-in-container'>
-            <form onSubmit={handleOnSubmit}>
+            <form className='sign-in-form' onSubmit={handleOnSubmit}>
                 <div className='sign-in-text'>Sign In</div>
                 <div className='social-login'>
                     <div className='description'>

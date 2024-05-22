@@ -171,21 +171,21 @@ form {
     height: 40px;
 }
 
-.division-line {
+.sign-in-form .division-line {
     width: 60%;
     display: flex;
     align-items: center;
     margin: 20px 0;
 }
 
-.division-line .left,
-.division-line .right {
+.sign-in-form .division-line .left,
+.sign-in-form .division-line .right {
     flex: 1;
     height: 1px;
     background-color: var(--medium-grey-color);
 }
 
-.division-line .center {
+.sign-in-form .division-line .center {
     padding: 0 10px;
     color: var(--dark-grey-color);
     font-weight: bold;

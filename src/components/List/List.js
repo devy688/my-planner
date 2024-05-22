@@ -2,11 +2,13 @@ import { useState } from 'react';
 import RenderHeader from '../../components/Calendar/RenderHeader';
 import RenderDays from '../../components/Calendar/RenderDays';
 import RenderCells from '../../components/Calendar/RenderCells';
-import Category from '../../components/Category/Category';
+import TodoForm from '../TodoForm/TodoForm';
 import { addMonths, subMonths } from 'date-fns';
 import './List.css';
 
-export default function List() {
+export default function List(props) {
+    let { todoData } = props;
+
     const [currentMonth, setCurrentMonth] = useState(new Date());
     const [selectedDate, setSelectedDate] = useState(new Date());
 
@@ -40,7 +42,7 @@ export default function List() {
             </div>
             <div className='task-list-layout'>
                 <div className='todo-form'>
-                    <Category />
+                    <TodoForm todoData={todoData} />
                 </div>
             </div>
         </div>

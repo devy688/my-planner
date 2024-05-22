@@ -5,8 +5,47 @@ import SignInForm from './components/SignForm/SignInForm';
 import SignUpForm from './components/SignForm/SignUpForm';
 import Todo from './pages/Todo';
 import List from './components/List/List';
+import Goals from './components/Goals/Goals';
 
 function App() {
+    let todoData = [
+        {
+            id: 0,
+            title: 'workout',
+            lists: [
+                {
+                    id: '0-1',
+                    name: '런닝하기',
+                    isCompleted: false,
+                },
+            ],
+            color: 'blue',
+        },
+        {
+            id: 1,
+            title: 'coding',
+            lists: [
+                {
+                    id: '1-1',
+                    name: '코딩애플 강의듣기',
+                    isCompleted: true,
+                },
+                {
+                    id: '1-2',
+                    name: '프로그래머스 문제 풀기',
+                    isCompleted: false,
+                },
+            ],
+            color: 'red',
+        },
+        {
+            id: 2,
+            title: 'daily',
+            lists: [],
+            color: 'green',
+        },
+    ];
+
     let [type, setType] = useState('sign-in');
 
     const handleClick = (text) => {
@@ -75,8 +114,14 @@ function App() {
                         }
                     />
                     <Route path='/todo' element={<Todo />}>
-                        <Route path='list' element={<List />} />
-                        <Route path='goals' element={<div>goals</div>} />
+                        <Route
+                            path='list'
+                            element={<List todoData={todoData} />}
+                        />
+                        <Route
+                            path='goals'
+                            element={<Goals todoData={todoData} />}
+                        />
                         <Route
                             path='timer-setting'
                             element={<div>timer-setting</div>}
