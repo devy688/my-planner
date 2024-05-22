@@ -6,6 +6,7 @@ import SignUpForm from './components/SignForm/SignUpForm';
 import Todo from './pages/Todo';
 import List from './components/List/List';
 import Goals from './components/Goals/Goals';
+import TimerSetting from './components/TimerSetting/TimerSetting';
 
 function App() {
     let todoData = [
@@ -124,7 +125,7 @@ function App() {
                         />
                         <Route
                             path='timer-setting'
-                            element={<div>timer-setting</div>}
+                            element={<TimerSetting />}
                         />
                         <Route
                             path='timetable'
