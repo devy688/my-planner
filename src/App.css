@@ -63,7 +63,7 @@ form {
 
 .container {
     width: 1000px;
-    height: 550px;
+    height: 580px;
     border-radius: 20px;
     background-color: var(--very-light-grey-color);
     box-shadow: 0 14px 28px rgba(0, 0, 0, 0.2), 0 10px 10px rgba(0, 0, 0, 0.1);
