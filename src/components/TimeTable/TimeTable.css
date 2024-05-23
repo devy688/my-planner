@@ -1,0 +1,35 @@
+@import url('../../styles.css');
+
+.timetable {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    background-color: var(--medium-grey-color);
+}
+
+.timetable-row {
+    display: contents;
+}
+
+.timetable-hour {
+    background-color: var(--very-light-grey-color);
+    text-align: center;
+    padding: 1px;
+    border: 0.5px solid var(--medium-grey-color);
+    font-size: 13px;
+}
+
+.timetable-cell {
+    background-color: var(--white-color);
+    height: 17px;
+    border: 0.25px solid var(--medium-grey-color);
+    border-right: 0.25px dashed var(--medium-grey-color);
+    border-left: 0.25px dashed var(--medium-grey-color);
+}
+
+.timetable-row > .timetable-cell:nth-of-type(2) {
+    border-left: 0.25px solid var(--medium-grey-color);
+}
+
+.timetable-row > .timetable-cell:nth-of-type(7) {
+    border-right: 0.25px solid var(--medium-grey-color);
+}

@@ -1,0 +1,30 @@
+@import url('../../styles.css');
+
+.total-time-summary {
+    height: 100%;
+}
+
+.summary-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.summary-list .item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.item .title {
+    background-color: var(--light-grey-color);
+    padding: 8px 15px;
+    border-radius: 15px;
+    border: none;
+    font-size: 16px;
+    margin-right: 10px;
+}
+
+.item .time {
+    font-weight: 600;
+}

@@ -7,6 +7,7 @@ import Todo from './pages/Todo';
 import List from './components/List/List';
 import Goals from './components/Goals/Goals';
 import TimerSetting from './components/TimerSetting/TimerSetting';
+import ActivityLog from './components/ActivityLog/ActivityLog';
 
 function App() {
     let todoData = [
@@ -18,9 +19,11 @@ function App() {
                     id: '0-1',
                     name: '런닝하기',
                     isCompleted: false,
+                    pomodoroTime: 30,
                 },
             ],
             color: 'blue',
+            totalPomodoroTime: 30,
         },
         {
             id: 1,
@@ -30,20 +33,24 @@ function App() {
                     id: '1-1',
                     name: '코딩애플 강의듣기',
                     isCompleted: true,
+                    pomodoroTime: 50,
                 },
                 {
                     id: '1-2',
                     name: '프로그래머스 문제 풀기',
                     isCompleted: false,
+                    pomodoroTime: 25,
                 },
             ],
             color: 'red',
+            totalPomodoroTime: 75,
         },
         {
             id: 2,
             title: 'daily',
             lists: [],
             color: 'green',
+            totalPomodoroTime: 0,
         },
     ];
 
@@ -128,8 +135,8 @@ function App() {
                             element={<TimerSetting />}
                         />
                         <Route
-                            path='timetable'
-                            element={<div>timetable</div>}
+                            path='activity-log'
+                            element={<ActivityLog todoData={todoData} />}
                         />
                         <Route
                             path='my-account'

@@ -42,10 +42,12 @@ export default function Nav() {
                 타이머 셋팅
             </li>
             <li
-                className={`list ${activeItem === 'timetable' ? 'active' : ''}`}
+                className={`list ${
+                    activeItem === 'activity-log' ? 'active' : ''
+                }`}
                 onClick={() => {
-                    navigate('/todo/timetable');
-                    handleActiveItem('timetable');
+                    navigate('/todo/activity-log');
+                    handleActiveItem('activity-log');
                 }}
             >
                 타임 테이블
