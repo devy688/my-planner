@@ -6,19 +6,19 @@
     top: 0;
 }
 
-.avatar {
+.profile-card .avatar {
     width: 64px;
     height: 64px;
 }
 
-.info {
+.profile-card .info {
     display: flex;
     flex-direction: column;
     justify-content: center;
     padding-left: 20px;
 }
 
-.user-name {
+.profile-card .user-name {
     font-family: 'Inter', sans-serif;
     font-optical-sizing: auto;
     font-weight: 600;

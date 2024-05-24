@@ -8,6 +8,7 @@ import List from './components/List/List';
 import Goals from './components/Goals/Goals';
 import TimerSetting from './components/TimerSetting/TimerSetting';
 import ActivityLog from './components/ActivityLog/ActivityLog';
+import MyAccount from './components/MyAccount/MyAccount';
 
 function App() {
     let todoData = [
@@ -138,10 +139,7 @@ function App() {
                             path='activity-log'
                             element={<ActivityLog todoData={todoData} />}
                         />
-                        <Route
-                            path='my-account'
-                            element={<div>my-account</div>}
-                        />
+                        <Route path='my-account' element={<MyAccount />} />
                     </Route>
                 </Routes>
             </div>

@@ -1,10 +1,13 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import './Nav.css';
 
 export default function Nav() {
     const navigate = useNavigate();
-    const [activeItem, setActiveItem] = useState('list');
+    const location = useLocation();
+    const [activeItem, setActiveItem] = useState(
+        location.pathname.split('/')[2]
+    );
 
     const handleActiveItem = (itemName) => {
         setActiveItem(itemName);
