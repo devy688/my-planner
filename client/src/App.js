@@ -3,12 +3,12 @@ import { Routes, Route } from 'react-router-dom';
 import './App.css';
 import SignInForm from './components/SignForm/SignInForm';
 import SignUpForm from './components/SignForm/SignUpForm';
-import Todo from './pages/Todo';
-import List from './components/List/List';
-import Goals from './components/Goals/Goals';
-import TimerSetting from './components/TimerSetting/TimerSetting';
-import ActivityLog from './components/ActivityLog/ActivityLog';
-import MyAccount from './components/MyAccount/MyAccount';
+import Todo from './pages/Todo/Todo';
+import List from './pages/List/List';
+import Goals from './pages/Goals/Goals';
+import TimerSetting from './pages/TimerSetting/TimerSetting';
+import ActivityLog from './pages/ActivityLog/ActivityLog';
+import MyAccount from './pages/MyAccount/MyAccount';
 
 function App() {
     let todoData = [

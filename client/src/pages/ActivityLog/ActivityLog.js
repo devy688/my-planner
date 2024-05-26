@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import Calendar from '../Calendar/Calendar';
-import TimeTable from '../TimeTable/TimeTable';
-import TotalTimeSummary from '../TotalTimeSummary/TotalTimeSummary';
-import '../Calendar/Calendar.css';
+import Calendar from '../../components/Calendar/Calendar';
+import TimeTable from '../../components/TimeTable/TimeTable';
+import TotalTimeSummary from '../../components/TotalTimeSummary/TotalTimeSummary';
+import '../../components/Calendar/Calendar.css';
 import './ActivityLog.css';
 
 export default function ActivityLog(props) {

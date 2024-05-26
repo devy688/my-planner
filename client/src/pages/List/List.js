@@ -1,5 +1,5 @@
-import Calendar from '../Calendar/Calendar';
-import TodoForm from '../TodoForm/TodoForm';
+import Calendar from '../../components/Calendar/Calendar';
+import TodoForm from '../../components/TodoForm/TodoForm';
 import './List.css';
 
 export default function List(props) {
