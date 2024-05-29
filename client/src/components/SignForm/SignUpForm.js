@@ -1,9 +1,12 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { setUser } from '../../redux/userSlice';
 import axios from 'axios';
 
 export default function SignUpForm() {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const [formData, setFormData] = useState({
         nickname: '',
@@ -57,13 +60,14 @@ export default function SignUpForm() {
         }
 
         try {
-            const response = await axios.post('/register', {
+            const response = await axios.post('/api/auth/sign-up', {
                 nickname,
                 email,
                 password,
             });
-            console.log('axios /register >>> ', response.data.message);
+            console.log('axios /sign-up >>> ', response.data.message);
 
+            dispatch(setUser(response.data.user));
             navigate('/todo/list');
         } catch (error) {
             console.error('error >>> ', error);

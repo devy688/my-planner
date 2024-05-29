@@ -1,6 +1,9 @@
+import { useSelector } from 'react-redux';
 import './ProfileCard.css';
 
 export default function ProfileCard() {
+    const user = useSelector((state) => state.user.userInfo);
+
     return (
         <div className='profile-card'>
             <img
@@ -9,7 +12,7 @@ export default function ProfileCard() {
                 className='avatar'
             />
             <div className='info'>
-                <span className='user-name'>devy</span>
+                <span className='user-name'>{user.nickname}</span>
             </div>
         </div>
     );
