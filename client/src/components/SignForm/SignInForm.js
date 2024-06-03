@@ -31,14 +31,17 @@ export default function SignInForm() {
                 email,
                 password,
             });
-            console.log('axios /sign-in >>> ', response.data.message);
-
             dispatch(setUser(response.data.user));
             navigate('/todo/list');
+            console.log('axios /sign-in >>> ', response.data.message);
         } catch (error) {
             console.error('error >>> ', error);
             alert('로그인 중 에러가 발생하였습니다.');
         }
+    };
+
+    const handleGoogleLogin = async () => {
+        window.location.href = 'http://localhost:5001/api/auth/google';
     };
 
     return (
@@ -54,6 +57,7 @@ export default function SignInForm() {
                             src='images/google.png'
                             className='google'
                             alt='google-login'
+                            onClick={handleGoogleLogin}
                         ></img>
                         <img
                             src='images/github.png'

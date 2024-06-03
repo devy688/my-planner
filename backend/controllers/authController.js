@@ -60,16 +60,33 @@ const signInUser = async (req, res) => {
         }
 
         const token = jwt.sign(
-            { userId: user._id }, //
+            { user: user }, //
             process.env.JWT_SECRET, //
             { expiresIn: '1h' }
         );
+        // const token = jwt.sign(userInfo, JWT_SECRET, { expiresIn: '1h' });
+        res.cookie('token', token, {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === 'production',
+        });
 
-        res.status(200).json({ message: 'Login successful', user, token });
+        return res.status(200).json({
+            message: 'Login successful',
+            user,
+            token,
+        });
     } catch (error) {
         console.error('Server error:', error);
         res.status(500).json({ message: 'Server error', error: error.message });
     }
 };
 
-export { signUpUser, signInUser };
+const logoutUser = (req, res) => {
+    res.clearCookie('token');
+    res.clearCookie('isGoogleLogin');
+    res.status(200).json({
+        message: 'Logout successful',
+    });
+};
+
+export { signUpUser, signInUser, logoutUser };
