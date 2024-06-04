@@ -7,6 +7,7 @@ import cookieParser from 'cookie-parser';
 import connectDB from './config.js';
 import authRoutes from './routes/authRoutes.js';
 import googleAuthRoutes from './routes/googleAuthRoutes.js';
+import githubAuthRoutes from './routes/githubAuthRoutes.js';
 
 dotenv.config();
 connectDB();
@@ -23,6 +24,7 @@ app.use(express.static('public'));
 
 app.use('/api/auth', authRoutes);
 app.use('/api/auth/google', googleAuthRoutes);
+app.use('/api/auth/github', githubAuthRoutes);
 
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, '../client/build/index.html'));

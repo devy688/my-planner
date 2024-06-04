@@ -83,7 +83,7 @@ const signInUser = async (req, res) => {
 
 const logoutUser = (req, res) => {
     res.clearCookie('token');
-    res.clearCookie('isGoogleLogin');
+    res.clearCookie('socialLogin');
     res.status(200).json({
         message: 'Logout successful',
     });

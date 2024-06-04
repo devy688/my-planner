@@ -6,9 +6,9 @@ import User from '../models/User.js';
 dotenv.config();
 
 // 구글 클라이언트 정보
-const CLIENT_ID = process.env.CLIENT_ID;
-const CLIENT_SECRET = process.env.CLIENT_SECRET;
-const REDIRECT_URI = process.env.REDIRECT_URI;
+const CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
+const CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET;
+const REDIRECT_URI = process.env.GOOGLE_REDIRECT_URI;
 
 const JWT_SECRET = process.env.JWT_SECRET;
 
@@ -74,7 +74,6 @@ const handleGoogleCallback = async (req, res) => {
                 socialMediaId: id,
                 socialMediaType: 'google',
                 profileImage: picture,
-                isFirstLogin: false,
             });
             await user.save();
         }
@@ -86,7 +85,7 @@ const handleGoogleCallback = async (req, res) => {
             httpOnly: true,
             secure: process.env.NODE_ENV === 'production',
         });
-        res.cookie('isGoogleLogin', true);
+        res.cookie('socialLogin', 'google');
 
         res.redirect('/todo/list');
     } catch (error) {

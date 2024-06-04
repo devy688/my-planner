@@ -44,6 +44,11 @@ export default function SignInForm() {
         window.location.href = 'http://localhost:5001/api/auth/google';
     };
 
+    const handleGithubLogin = async () => {
+        const GITHUB_CLIENT_ID = process.env.REACT_APP_GITHUB_CLIENT_ID;
+        window.location.href = `https://github.com/login/oauth/authorize?client_id=${GITHUB_CLIENT_ID}`;
+    };
+
     return (
         <div className='form-container sign-in-container'>
             <form className='sign-in-form' onSubmit={handleSubmit}>
@@ -63,6 +68,7 @@ export default function SignInForm() {
                             src='images/github.png'
                             className='github'
                             alt='github-login'
+                            onClick={handleGithubLogin}
                         ></img>
                         <img
                             src='images/kakao-talk.png'

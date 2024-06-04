@@ -29,14 +29,15 @@ export default function ProfileCard() {
     };
 
     useEffect(() => {
-        const isGoogleLogin = getCookie('isGoogleLogin');
+        const socialLogin = getCookie('socialLogin');
 
-        if (isGoogleLogin) {
+        if (socialLogin) {
             async function fetchUser() {
                 try {
-                    const response = await axios.get('/api/auth/google/user');
+                    const response = await axios.get(
+                        `/api/auth/${socialLogin}/user`
+                    );
                     const user = response.data;
-                    console.log(user);
 
                     dispatch(setUser(user));
                 } catch (error) {

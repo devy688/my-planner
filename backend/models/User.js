@@ -12,7 +12,6 @@ const userSchema = new mongoose.Schema(
         // 이메일
         email: {
             type: String,
-            required: true,
             unique: true,
             trim: true,
         },
@@ -34,7 +33,6 @@ const userSchema = new mongoose.Schema(
             type: String,
             required: false,
         },
-        isFirstLogin: { type: Boolean, default: true },
         // 프로필 이미지
         profileImage: {
             type: String,
