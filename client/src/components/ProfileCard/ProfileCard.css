@@ -2,33 +2,31 @@
     width: 100%;
     padding: 30px;
     display: flex;
+    justify-content: space-between;
     align-items: center;
     position: absolute;
     top: 0;
 }
 
-.loading {
-    font-family: 'Inter', sans-serif;
-    font-optical-sizing: auto;
-    font-weight: 600;
-    font-style: normal;
-    font-size: 32px;
+.user-section {
+    display: flex;
+    align-items: center;
 }
 
-.profile-card .avatar {
+.user-section .avatar {
     width: 64px;
     height: 64px;
     border-radius: 50%;
 }
 
-.profile-card .info {
+.user-section .info {
     display: flex;
     flex-direction: column;
     justify-content: center;
     padding-left: 20px;
 }
 
-.profile-card .user-name {
+.info .user-name {
     font-family: 'Inter', sans-serif;
     font-optical-sizing: auto;
     font-weight: 600;

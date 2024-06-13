@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 
 const defaultProfileImage = '/default-profile.png';
 
-const userSchema = new mongoose.Schema(
+const UserSchema = new mongoose.Schema(
     {
         // 닉네임
         nickname: {
@@ -44,7 +44,7 @@ const userSchema = new mongoose.Schema(
     { timestamps: true }
 );
 
-userSchema.index({ socialMediaId: 1 }, { unique: true, sparse: true });
+UserSchema.index({ socialMediaId: 1 }, { unique: true, sparse: true });
 
-const User = mongoose.model('User', userSchema);
+const User = mongoose.model('User', UserSchema);
 export default User;

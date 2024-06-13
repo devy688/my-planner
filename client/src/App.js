@@ -123,14 +123,8 @@ function App() {
                         }
                     />
                     <Route path='/todo' element={<Todo />}>
-                        <Route
-                            path='list'
-                            element={<List todoData={todoData} />}
-                        />
-                        <Route
-                            path='goals'
-                            element={<Goals todoData={todoData} />}
-                        />
+                        <Route path='list' element={<List />} />
+                        <Route path='goals' element={<Goals />} />
                         <Route
                             path='timer-setting'
                             element={<TimerSetting />}

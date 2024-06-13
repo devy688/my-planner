@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { Icon } from '@iconify/react';
 import './TodoForm.css';
 
-export default function TodoForm({ todoData }) {
-    const [categories, setCategories] = useState(todoData);
+export default function TodoForm() {
+    const [categories, setCategories] = useState([]);
     const [categoryId, setCategoryId] = useState('');
     const [listId, setListId] = useState('');
 

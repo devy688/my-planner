@@ -8,6 +8,7 @@ import connectDB from './config.js';
 import authRoutes from './routes/authRoutes.js';
 import googleAuthRoutes from './routes/googleAuthRoutes.js';
 import githubAuthRoutes from './routes/githubAuthRoutes.js';
+import goalsRoutes from './routes/goalsRoutes.js';
 
 dotenv.config();
 connectDB();
@@ -22,9 +23,13 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '../client/build')));
 app.use(express.static('public'));
 
+// 로그인
 app.use('/api/auth', authRoutes);
 app.use('/api/auth/google', googleAuthRoutes);
 app.use('/api/auth/github', githubAuthRoutes);
+
+// 목표관리
+app.use('/api/goals', goalsRoutes);
 
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, '../client/build/index.html'));

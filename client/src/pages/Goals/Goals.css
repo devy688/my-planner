@@ -16,6 +16,10 @@
     padding: 20px;
 }
 
+.goal-list .title {
+    font-weight: 500;
+}
+
 .goal-item {
     display: flex;
     align-items: center;
@@ -40,7 +44,6 @@
 .add-goal-container {
     display: flex;
     flex-direction: column;
-    padding-left: 23px;
 }
 
 .add-goal-input {
@@ -75,9 +78,6 @@
     font-size: 16px;
 }
 
-.category .icon.plus {
-}
-
 .goal-management-container .division-line {
     width: 2px;
     background-color: var(--medium-grey-color);
@@ -102,9 +102,6 @@
     margin-bottom: 10px;
 }
 
-.goal-color .color-picker {
-}
-
 .goal-color button {
     margin-top: 20px;
     padding: 8px 43px;
@@ -113,7 +110,7 @@
     cursor: pointer;
     font-size: 16px;
 }
-.goal-color .delete-button {
+.goal-color .left-button {
     background-color: var(--light-grey-color);
     margin-right: 12px;
 }

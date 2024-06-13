@@ -71,21 +71,6 @@ input[type='text']:disabled {
     outline: none;
 }
 
-.todo-text-input.blue {
-    border-bottom: 2px solid var(--blue-color);
-    background-color: transparent;
-}
-
-.todo-text-input.red {
-    border-bottom: 2px solid var(--red-color);
-    background-color: transparent;
-}
-
-.todo-text-input.green {
-    border-bottom: 2px solid var(--green-color);
-    background-color: transparent;
-}
-
 .todo-item-container .icons {
     display: flex;
     align-items: center;
@@ -144,35 +129,8 @@ input[type='text']:disabled {
     background-color: transparent;
 }
 
-.add-todo-container input.blue {
-    border-bottom: 2px solid var(--blue-color);
-    background-color: transparent;
-}
-
-.add-todo-container input.red {
-    border-bottom: 2px solid var(--red-color);
-    background-color: transparent;
-}
-
-.add-todo-container input.green {
-    border-bottom: 2px solid var(--green-color);
-    background-color: transparent;
-}
-
 .add-todo-input:focus {
     outline: none;
-}
-
-.title.blue {
-    color: var(--blue-color);
-}
-
-.title.red {
-    color: var(--red-color);
-}
-
-.title.green {
-    color: var(--green-color);
 }
 
 .blue:checked {

@@ -2,6 +2,7 @@ import bcryptjs from 'bcryptjs';
 import { v4 as uuidv4 } from 'uuid';
 import jwt from 'jsonwebtoken';
 import User from '../models/User.js';
+import Goal from '../models/Goal.js';
 
 const signUpUser = async (req, res) => {
     const { nickname, email, password, socialMediaId, socialMediaType } =
@@ -64,16 +65,18 @@ const signInUser = async (req, res) => {
             process.env.JWT_SECRET, //
             { expiresIn: '1h' }
         );
-        // const token = jwt.sign(userInfo, JWT_SECRET, { expiresIn: '1h' });
         res.cookie('token', token, {
             httpOnly: true,
             secure: process.env.NODE_ENV === 'production',
         });
 
+        const goals = await Goal.find({ userId: user._id });
+
         return res.status(200).json({
             message: 'Login successful',
-            user,
             token,
+            user,
+            goals,
         });
     } catch (error) {
         console.error('Server error:', error);

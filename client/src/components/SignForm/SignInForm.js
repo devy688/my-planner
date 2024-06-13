@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { setUser } from '../../redux/userSlice';
 import axios from 'axios';
+import { setUser } from '../../redux/userSlice';
+import { setGoals } from '../../redux/goalsSlice';
 
 export default function SignInForm() {
     const navigate = useNavigate();
@@ -31,9 +32,11 @@ export default function SignInForm() {
                 email,
                 password,
             });
-            dispatch(setUser(response.data.user));
-            navigate('/todo/list');
             console.log('axios /sign-in >>> ', response.data.message);
+            dispatch(setUser(response.data.user));
+            dispatch(setGoals(response.data.goals));
+
+            navigate('/todo/list');
         } catch (error) {
             console.error('error >>> ', error);
             alert('로그인 중 에러가 발생하였습니다.');
@@ -69,11 +72,6 @@ export default function SignInForm() {
                             className='github'
                             alt='github-login'
                             onClick={handleGithubLogin}
-                        ></img>
-                        <img
-                            src='images/kakao-talk.png'
-                            className='kakao-talk'
-                            alt='kakao-talk-login'
                         ></img>
                     </div>
                 </div>
