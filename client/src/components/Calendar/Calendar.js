@@ -5,7 +5,7 @@ import RenderCells from './RenderCells';
 import { addMonths, subMonths } from 'date-fns';
 import './Calendar.css';
 
-export default function Calendar() {
+export default function Calendar(props) {
     const [currentMonth, setCurrentMonth] = useState(new Date());
     const [selectedDate, setSelectedDate] = useState(new Date());
 
@@ -18,6 +18,7 @@ export default function Calendar() {
 
     const onDateClick = (day) => {
         setSelectedDate(day);
+        props.onDateChange(day);
     };
 
     return (

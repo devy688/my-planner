@@ -9,6 +9,7 @@ import authRoutes from './routes/authRoutes.js';
 import googleAuthRoutes from './routes/googleAuthRoutes.js';
 import githubAuthRoutes from './routes/githubAuthRoutes.js';
 import goalsRoutes from './routes/goalsRoutes.js';
+import listsRoutes from './routes/listsRoutes.js';
 
 dotenv.config();
 connectDB();
@@ -30,6 +31,7 @@ app.use('/api/auth/github', githubAuthRoutes);
 
 // 목표관리
 app.use('/api/goals', goalsRoutes);
+app.use('/api/lists', listsRoutes);
 
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, '../client/build/index.html'));

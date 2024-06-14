@@ -55,6 +55,7 @@
 .todo-item .todo-text-input {
     border: none;
     background-color: transparent;
+    width: 200px;
 }
 
 input[type='text']:disabled {
@@ -110,7 +111,7 @@ input[type='text']:disabled {
 }
 
 .add-todo-input {
-    width: 50%;
+    width: 200px;
     border: none;
     margin-right: 5px;
     background-color: transparent;

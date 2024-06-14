@@ -1,8 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Icon } from '@iconify/react';
+import axios from 'axios';
+import { setLists } from '../../redux/listsSlice';
 import './TodoForm.css';
 
-export default function TodoForm() {
+export default function TodoForm(props) {
     const [categories, setCategories] = useState([]);
     const [categoryId, setCategoryId] = useState('');
     const [listId, setListId] = useState('');
@@ -12,6 +15,34 @@ export default function TodoForm() {
 
     const [isEditing, setIsEditing] = useState(false);
     const [updateTodoText, setUpdateTodoText] = useState('');
+
+    const dispatch = useDispatch();
+    const user = useSelector((state) => state.user.userInfo);
+    const goals = useSelector((state) => state.goals.goals);
+
+    useEffect(() => {
+        async function fetchData() {
+            try {
+                const response = await axios.post('/api/lists/read', {
+                    userId: user._id,
+                    goals: [...goals].sort((a, b) => (a._id > b._id ? 1 : -1)),
+                    date: props.selectedDate,
+                });
+                console.log(
+                    'axios /api/lists/read >>> ',
+                    response.data.message
+                );
+
+                dispatch(setLists(response.data.goalsWithLists));
+                setCategories(response.data.goalsWithLists);
+            } catch (error) {
+                console.error('error >>> ', error);
+                alert('/api/list/read 호출 중 에러가 발생하였습니다.');
+            }
+        }
+
+        fetchData();
+    }, [dispatch, goals, props.selectedDate, user._id]);
 
     const addTodoInput = (categoryId) => {
         setIsEditing(false);
@@ -26,22 +57,13 @@ export default function TodoForm() {
         setNewTodo('');
     };
 
-    const addNewTodo = (categoryId) => {
+    const addNewTodo = async (categoryId) => {
         if (!newTodo || newTodo === '' || newTodo.trim() === '') {
             alert('유효한 값을 입력하세요.');
             return;
         }
 
         const copied = [...categories];
-
-        let id = Date.now();
-        const todo = {
-            id: id,
-            name: newTodo,
-            isCompleted: false,
-        };
-
-        // 이미 추가한 name의 경우를 체크하여 existed 변수에 저장
         const isExisted = copied.some((category) => {
             if (category.id === categoryId) {
                 return category.lists.some((list) => list.name === newTodo);
@@ -49,52 +71,89 @@ export default function TodoForm() {
             return false;
         });
 
-        // 이미 존재하는 경우 경고창을 띄우고 추가하지 않음
         if (isExisted) {
             alert('이미 등록한 할 일 입니다.');
         } else {
+            try {
+                const response = await axios.post('/api/lists/register', {
+                    userId: user._id,
+                    goalId: categoryId,
+                    name: newTodo,
+                    date: props.selectedDate,
+                });
+                console.log(
+                    'axios /api/lists/register >>> ',
+                    response.data.message
+                );
+
+                copied.forEach((category) => {
+                    if (category.id === categoryId) {
+                        category.lists.push(response.data.newList);
+                    }
+                });
+                setCategories(copied);
+                setNewTodo('');
+            } catch (error) {
+                console.error('error >>> ', error);
+                alert('/api/lists/register 호출 중 에러가 발생하였습니다.');
+            }
+        }
+    };
+
+    const updateTodo = async (categoryId, listId) => {
+        try {
+            const response = await axios.post('/api/lists/update', {
+                userId: user._id,
+                goalId: categoryId,
+                listId,
+                name: updateTodoText,
+            });
+            console.log('axios /api/lists/update >>> ', response.data.message);
+
+            const copied = [...categories];
             copied.forEach((category) => {
                 if (category.id === categoryId) {
-                    category.lists.push(todo);
+                    category.lists.forEach((list) => {
+                        if (list.id === listId) {
+                            list.name = updateTodoText;
+                        }
+                    });
                 }
             });
+
+            setCategories(copied);
+            setIsEditing(false);
+        } catch (error) {
+            console.error('error >>> ', error);
+            alert('/api/lists/update 호출 중 에러가 발생하였습니다.');
         }
-
-        setCategories(copied);
-        setNewTodo('');
     };
 
-    const updateTodo = (categoryId, listId) => {
-        const copied = [...categories];
+    const deleteTodo = async (categoryId, listId) => {
+        try {
+            const response = await axios.post('/api/lists/delete', {
+                userId: user._id,
+                goalId: categoryId,
+                listId,
+            });
+            console.log('axios /api/lists/delete >>> ', response.data.message);
 
-        copied.forEach((category) => {
-            if (category.id === categoryId) {
-                category.lists.forEach((list) => {
-                    if (list.id === listId) {
-                        list.name = updateTodoText;
-                    }
-                });
-            }
-        });
+            let copied = [...categories];
+            copied.forEach((category) => {
+                if (category.id === categoryId) {
+                    category.lists.forEach((list, index) => {
+                        if (list.id === listId) {
+                            category.lists.splice(index, 1);
+                        }
+                    });
+                }
+            });
 
-        setCategories(copied);
-        setIsEditing(false);
-    };
-
-    const deleteTodo = (categoryId, listId) => {
-        let copied = [...categories];
-
-        copied.forEach((category) => {
-            if (category.id === categoryId) {
-                category.lists.forEach((list, index) => {
-                    if (list.id === listId) {
-                        category.lists.splice(index, 1);
-                    }
-                });
-            }
-        });
-
-        setCategories(copied);
+            setCategories(copied);
+        } catch (error) {
+            console.error('error >>> ', error);
+            alert('/api/lists/delete 호출 중 에러가 발생하였습니다.');
+        }
     };
 
     const startPoromodo = () => {};
@@ -109,7 +168,12 @@ export default function TodoForm() {
                             addTodoInput(category.id);
                         }}
                     >
-                        <span className={`title ${category.color}`}>
+                        <span
+                            className='title'
+                            style={{
+                                color: category.color,
+                            }}
+                        >
                             {category.title}
                         </span>
                         <Icon icon='ri:add-line' className='icon plus' />
@@ -126,14 +190,20 @@ export default function TodoForm() {
                                             type='checkbox'
                                             id={list.name}
                                             name={list.name}
-                                            className={`check-box ${category.color}`}
+                                            className='check-box'
+                                            style={{
+                                                color: category.color,
+                                            }}
                                         />
                                         {isEditing &&
                                         category.id === categoryId &&
                                         list.id === listId ? (
                                             <input
                                                 type='text'
-                                                className={`todo-text-input isEditing ${category.color}`}
+                                                className={`todo-text-input isEditing`}
+                                                style={{
+                                                    borderBottom: `1px solid ${category.color}`,
+                                                }}
                                                 value={updateTodoText}
                                                 onChange={(e) => {
                                                     setUpdateTodoText(
@@ -201,7 +271,10 @@ export default function TodoForm() {
                                 />
                                 <input
                                     type='text'
-                                    className={`add-todo-input ${category.color}`}
+                                    className='add-todo-input'
+                                    style={{
+                                        borderBottom: `1px solid ${category.color}`,
+                                    }}
                                     onInput={(e) => {
                                         setNewTodo(e.target.value);
                                     }}
