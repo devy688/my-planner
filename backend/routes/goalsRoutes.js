@@ -1,16 +1,16 @@
 import express from 'express';
 import {
     readGoals,
-    registerGoals,
-    updateGoals,
-    deleteGoals,
+    registerGoal,
+    updateGoal,
+    deleteGoal,
 } from '../controllers/goalsController.js';
 
 const router = express.Router();
 
 router.post('/read', readGoals);
-router.post('/register', registerGoals);
-router.post('/update', updateGoals);
-router.post('/delete', deleteGoals);
+router.post('/register', registerGoal);
+router.post('/update', updateGoal);
+router.post('/delete', deleteGoal);
 
 export default router;

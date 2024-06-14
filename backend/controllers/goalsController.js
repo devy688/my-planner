@@ -16,7 +16,7 @@ const readGoals = async (req, res) => {
     }
 };
 
-const registerGoals = async (req, res) => {
+const registerGoal = async (req, res) => {
     const { userId, title, color } = req.body;
 
     if (!title || !color) {
@@ -35,11 +35,11 @@ const registerGoals = async (req, res) => {
         });
     } catch (error) {
         console.error(error.message);
-        res.status(500).send('registerGoals Server error');
+        res.status(500).send('registerGoal Server error');
     }
 };
 
-const updateGoals = async (req, res) => {
+const updateGoal = async (req, res) => {
     const { userId, id, title, color } = req.body;
 
     if (!title || !color) {
@@ -68,11 +68,11 @@ const updateGoals = async (req, res) => {
         });
     } catch (error) {
         console.error(error.message);
-        res.status(500).send('updatedGoals Server error');
+        res.status(500).send('updatedGoal Server error');
     }
 };
 
-const deleteGoals = async (req, res) => {
+const deleteGoal = async (req, res) => {
     const { userId, id } = req.body;
 
     try {
@@ -88,8 +88,8 @@ const deleteGoals = async (req, res) => {
         });
     } catch (error) {
         console.error(error.message);
-        res.status(500).send('deleteGoals Server error');
+        res.status(500).send('deleteGoal Server error');
     }
 };
 
-export { readGoals, registerGoals, updateGoals, deleteGoals };
+export { readGoals, registerGoal, updateGoal, deleteGoal };

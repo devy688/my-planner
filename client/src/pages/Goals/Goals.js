@@ -30,13 +30,14 @@ export default function Goals() {
             const response = await axios.post('/api/goals/read', {
                 userId: user._id,
             });
+            console.log('axios /api/goals/read >>> ', response.data.message);
 
             dispatch(setGoals(response.data.goals));
             setGoalsData(response.data.goals);
         }
 
         fetchData();
-    }, [goalsData]);
+    }, [dispatch, user._id]);
 
     const handleCreateGoal = () => {
         setGoal({
