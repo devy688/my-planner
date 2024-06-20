@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Icon } from '@iconify/react';
 import axios from 'axios';
@@ -11,6 +11,8 @@ export default function TodoForm(props) {
     const [listId, setListId] = useState('');
 
     const [showAddTodoInput, setShowAddTodoInput] = useState(false);
+    const inputRef = useRef(null);
+    const containerRef = useRef(null);
     const [newTodo, setNewTodo] = useState('');
 
     const [isEditing, setIsEditing] = useState(false);
@@ -42,7 +44,26 @@ export default function TodoForm(props) {
         }
 
         fetchData();
+        setShowAddTodoInput(false);
+        setIsEditing(false);
     }, [dispatch, goals, props.selectedDate, user._id]);
+
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (
+                showAddTodoInput &&
+                containerRef.current &&
+                !containerRef.current.contains(event.target)
+            ) {
+                setShowAddTodoInput(false);
+            }
+        };
+        document.addEventListener('click', handleClickOutside);
+
+        return () => {
+            document.removeEventListener('click', handleClickOutside);
+        };
+    }, [showAddTodoInput]);
 
     const addTodoInput = (categoryId) => {
         setIsEditing(false);
@@ -148,7 +169,6 @@ export default function TodoForm(props) {
                     });
                 }
             });
-
             setCategories(copied);
         } catch (error) {
             console.error('error >>> ', error);
@@ -156,10 +176,40 @@ export default function TodoForm(props) {
         }
     };
 
+    const handleCheckboxChange = async (e, categoryId, listId) => {
+        try {
+            const response = await axios.post('/api/lists/update-complete', {
+                userId: user._id,
+                goalId: categoryId,
+                listId,
+                isCompleted: !e.target.checked,
+            });
+            console.log(
+                'axios /api/lists/update-complete >>> ',
+                response.data.message
+            );
+
+            const copied = [...categories];
+            copied.forEach((category) => {
+                if (category.id === categoryId) {
+                    category.lists.forEach((list) => {
+                        if (list.id === listId) {
+                            list.isCompleted = !e.target.checked;
+                        }
+                    });
+                }
+            });
+            setCategories(copied);
+        } catch (error) {
+            console.error('error >>> ', error);
+            alert('/api/lists/update-complete 호출 중 에러가 발생하였습니다.');
+        }
+    };
+
     const startPoromodo = () => {};
 
     return (
-        <div className='category-list'>
+        <div className='category-list' ref={containerRef}>
             {categories.map((category) => (
                 <div className='category' key={category.id}>
                     <button
@@ -191,8 +241,18 @@ export default function TodoForm(props) {
                                             id={list.name}
                                             name={list.name}
                                             className='check-box'
+                                            onChange={(e) => {
+                                                handleCheckboxChange(
+                                                    e,
+                                                    category.id,
+                                                    list.id
+                                                );
+                                            }}
+                                            checked={list.isCompleted}
                                             style={{
-                                                color: category.color,
+                                                accentColor: list.isCompleted
+                                                    ? category.color
+                                                    : '#000',
                                             }}
                                         />
                                         {isEditing &&
@@ -270,6 +330,7 @@ export default function TodoForm(props) {
                                     disabled
                                 />
                                 <input
+                                    ref={inputRef}
                                     type='text'
                                     className='add-todo-input'
                                     style={{

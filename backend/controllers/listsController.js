@@ -111,6 +111,30 @@ const updateList = async (req, res) => {
     }
 };
 
+const updateListCompletion = async (req, res) => {
+    const { userId, goalId, listId, isCompleted } = req.body;
+
+    try {
+        const updatedListCompletion = await List.findOneAndUpdate(
+            { userId, goalId, _id: listId }, // 조건
+            { isCompleted: !isCompleted }, // 업데이트할 데이터
+            { new: true } // 업데이트 후의 문서를 반환
+        );
+
+        if (!updatedListCompletion) {
+            return res.status(404).json({ message: 'List not found' });
+        }
+
+        return res.json({
+            message: 'list completion updated successfully',
+            updatedListCompletion,
+        });
+    } catch (error) {
+        console.error(error.message);
+        res.status(500).send('updatedListCompletion Server error');
+    }
+};
+
 const deleteList = async (req, res) => {
     const { userId, goalId, listId } = req.body;
 
@@ -135,4 +159,10 @@ const deleteList = async (req, res) => {
     }
 };
 
-export { readLists, registerList, updateList, deleteList };
+export {
+    readLists,
+    registerList,
+    updateList,
+    updateListCompletion,
+    deleteList,
+};
