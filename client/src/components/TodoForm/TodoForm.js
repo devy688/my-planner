@@ -170,6 +170,7 @@ export default function TodoForm(props) {
                 }
             });
             setCategories(copied);
+            props.handleTodoUpdate();
         } catch (error) {
             console.error('error >>> ', error);
             alert('/api/lists/delete 호출 중 에러가 발생하였습니다.');
@@ -193,13 +194,15 @@ export default function TodoForm(props) {
             copied.forEach((category) => {
                 if (category.id === categoryId) {
                     category.lists.forEach((list) => {
-                        if (list.id === listId) {
+                        const id = list.id || list._id;
+                        if (id === listId) {
                             list.isCompleted = !e.target.checked;
                         }
                     });
                 }
             });
             setCategories(copied);
+            props.handleTodoUpdate();
         } catch (error) {
             console.error('error >>> ', error);
             alert('/api/lists/update-complete 호출 중 에러가 발생하였습니다.');
@@ -233,7 +236,7 @@ export default function TodoForm(props) {
                             {category.lists.map((list) => (
                                 <li
                                     className='todo-item-container'
-                                    key={list.id}
+                                    key={list.id || list._id}
                                 >
                                     <div className='todo-item'>
                                         <input
@@ -245,7 +248,7 @@ export default function TodoForm(props) {
                                                 handleCheckboxChange(
                                                     e,
                                                     category.id,
-                                                    list.id
+                                                    list.id || list._id
                                                 );
                                             }}
                                             checked={list.isCompleted}

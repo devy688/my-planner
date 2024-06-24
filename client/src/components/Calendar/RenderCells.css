@@ -19,15 +19,6 @@
     opacity: 0;
 }
 
-.col.selected {
-}
-
-.col.not-valid {
-}
-
-.col.valid {
-}
-
 .col .day-icon {
     width: 30px;
     height: 30px;
@@ -71,6 +62,13 @@
 .bottom .four-quarter {
     width: 50%;
     height: 100%;
+}
+
+.one-quarter,
+.two-quarter,
+.three-quarter,
+.four-quarter {
+    opacity: 0.8;
 }
 
 .day-text {

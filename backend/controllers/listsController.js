@@ -66,7 +66,46 @@ const readLists = async (req, res) => {
         });
     } catch (error) {
         console.error(error.message);
-        res.status(500).send('readGoals Server error');
+        res.status(500).send('readLists Server error');
+    }
+};
+
+const readMonthLists = async (req, res) => {
+    const { userId, goals, year, month } = req.body;
+
+    const startDate = new Date(year, month - 1, 1);
+    const endDate = new Date(year, month, 1);
+
+    try {
+        const monthLists = await List.find({
+            userId,
+            date: {
+                $gte: startDate,
+                $lt: endDate,
+            },
+        }).lean();
+
+        const lists = [...monthLists];
+        for (let i = 0; i < goals.length; i++) {
+            const goalIdStr = goals[i]._id.toString();
+
+            for (let j = 0; j < lists.length; j++) {
+                if (goals[i]._id === lists[j].goalId.toString()) {
+                    lists[j].color = goals[i].color;
+
+                    const clientDate = new Date(lists[j].date);
+                    lists[j].day = clientDate.getDate();
+                }
+            }
+        }
+
+        return res.json({
+            message: 'List Month read successfully',
+            lists,
+        });
+    } catch (error) {
+        console.error(error.message);
+        res.status(500).send('readMonthLists Server error');
     }
 };
 
@@ -161,6 +200,7 @@ const deleteList = async (req, res) => {
 
 export {
     readLists,
+    readMonthLists,
     registerList,
     updateList,
     updateListCompletion,
