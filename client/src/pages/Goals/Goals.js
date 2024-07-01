@@ -2,12 +2,11 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Icon } from '@iconify/react';
 import { CirclePicker } from 'react-color';
-import axios from 'axios';
 import {
-    setGoals,
-    addGoal,
-    updateGoal,
-    deleteGoal,
+    fetchGoals,
+    addGoalAsync,
+    updateGoalAsync,
+    deleteGoalAsync,
 } from '../../redux/goalsSlice';
 import './Goals.css';
 
@@ -15,8 +14,6 @@ export default function Goals() {
     const dispatch = useDispatch();
     const user = useSelector((state) => state.user.userInfo);
     const goals = useSelector((state) => state.goals.goals);
-
-    let [goalsData, setGoalsData] = useState(goals);
     let [goal, setGoal] = useState({
         id: '',
         title: '',
@@ -26,17 +23,7 @@ export default function Goals() {
     let [showGoalDetailPanel, setShowGoalDetailPanel] = useState(false);
 
     useEffect(() => {
-        async function fetchData() {
-            const response = await axios.post('/api/goals/read', {
-                userId: user._id,
-            });
-            console.log('axios /api/goals/read >>> ', response.data.message);
-
-            dispatch(setGoals(response.data.goals));
-            setGoalsData(response.data.goals);
-        }
-
-        fetchData();
+        dispatch(fetchGoals(user._id));
     }, [dispatch, user._id]);
 
     const handleCreateGoal = () => {
@@ -77,25 +64,20 @@ export default function Goals() {
                 const { title, color } = goal;
 
                 if (title && color) {
-                    const response = await axios.post('/api/goals/register', {
-                        userId: user._id,
-                        title,
-                        color,
-                    });
-                    dispatch(addGoal(response.data.newGoal));
+                    dispatch(
+                        addGoalAsync({
+                            userId: user._id,
+                            title,
+                            color,
+                        })
+                    );
                     setShowGoalDetailPanel(false);
-
                     setGoal({
                         id: '',
                         title: '',
                         color: '',
                         isNew: true,
                     });
-
-                    console.log(
-                        'axios /api/goals/register >>> ',
-                        response.data.message
-                    );
                 } else {
                     alert('목표나 컬러가 빈 값입니다.');
                 }
@@ -108,26 +90,16 @@ export default function Goals() {
                 const { id, title, color } = goal;
 
                 if (title && color) {
-                    const response = await axios.post('/api/goals/update', {
-                        userId: user._id,
-                        id,
-                        title,
-                        color,
-                    });
-                    dispatch(updateGoal(response.data.updateSorted));
+                    dispatch(
+                        updateGoalAsync({ userId: user._id, id, title, color })
+                    );
                     setShowGoalDetailPanel(false);
-
                     setGoal({
                         id: '',
                         title: '',
                         color: '',
                         isNew: true,
                     });
-
-                    console.log(
-                        'axios /api/goals/update >>> ',
-                        response.data.message
-                    );
                 } else {
                     alert('목표나 컬러가 빈 값입니다.');
                 }
@@ -142,22 +114,20 @@ export default function Goals() {
         event.preventDefault();
 
         try {
-            const response = await axios.post('/api/goals/delete', {
-                userId: user._id,
-                id: goal.id,
-            });
+            const userConfirmed = window.confirm(
+                '정말 목표를 삭제하시겠습니까? 포함되어 있던 할 일들이 모두 삭제됩니다.'
+            );
 
-            dispatch(deleteGoal(response.data.deleted));
-            setShowGoalDetailPanel(false);
-
-            setGoal({
-                id: '',
-                title: '',
-                color: '',
-                isNew: true,
-            });
-
-            console.log('axios /api/goals/delete >>> ');
+            if (userConfirmed) {
+                dispatch(deleteGoalAsync({ userId: user._id, id: goal.id }));
+                setShowGoalDetailPanel(false);
+                setGoal({
+                    id: '',
+                    title: '',
+                    color: '',
+                    isNew: true,
+                });
+            }
         } catch (error) {
             console.error('handleDeleteGoal error >>> ', error);
             alert('목표 삭제 중 에러가 발생하였습니다.');
@@ -168,7 +138,7 @@ export default function Goals() {
         <div className='goal-management-container'>
             <div className='goal-list-panel'>
                 <ul className='goal-list'>
-                    {goalsData.map((goal, index) => {
+                    {goals.map((goal, index) => {
                         return (
                             <li key={goal._id} className='goal-item'>
                                 <button
@@ -185,7 +155,7 @@ export default function Goals() {
                                     <span
                                         className='title'
                                         style={{
-                                            color: goal.color,
+                                            color: goal?.color,
                                         }}
                                     >
                                         {goal.title}

@@ -45,7 +45,7 @@ export default function Calendar(props) {
             await readMonthLists(currentMonth);
         }
         fetchData();
-    }, [currentMonth, props.isTodoUpdated]);
+    }, [currentMonth, props.isTodoUpdated, goals]);
 
     const prevMonth = async () => {
         const selectedMonth = subMonths(currentMonth, 1);

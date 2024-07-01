@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
 import Nav from '../../components/Nav/Nav';
 import ProfileCard from '../../components/ProfileCard/ProfileCard';
-import { fetchGoals } from '../../redux/action';
+import { fetchGoals } from '../../redux/goalsSlice';
 import { setUser } from '../../redux/userSlice';
 import './Todo.css';
 
@@ -54,7 +54,6 @@ export default function Todo() {
             async function fetchData() {
                 if (user?._id) {
                     await dispatch(fetchGoals(user._id));
-                    // dispatch(fetchLists(user._id));
                     setLoading(false);
                 }
             }

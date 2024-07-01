@@ -1,4 +1,5 @@
 import Goal from '../models/Goal.js';
+import List from '../models/List.js';
 
 const readGoals = async (req, res) => {
     const { userId } = req.body;
@@ -59,12 +60,9 @@ const updateGoal = async (req, res) => {
             return res.status(404).json({ message: 'Goal not found' });
         }
 
-        const updateSorted = await Goal.find({ userId }).sort({ _id: 1 });
-
         return res.json({
             message: 'Goal updated successfully',
             updatedGoal,
-            updateSorted,
         });
     } catch (error) {
         console.error(error.message);
@@ -81,6 +79,8 @@ const deleteGoal = async (req, res) => {
         if (!deletedGoal) {
             return res.status(404).json({ message: 'Goal not found' });
         }
+
+        await List.deleteMany({ goalId: id });
 
         res.json({
             message: 'Goal deleted successfully',

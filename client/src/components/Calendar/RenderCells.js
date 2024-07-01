@@ -25,7 +25,7 @@ export default function RenderCells({
         let set = new Set();
 
         monthData.forEach((item) => {
-            if (formattedDate === item.day.toString() && item.isCompleted) {
+            if (formattedDate === item.day?.toString() && item.isCompleted) {
                 set.add([item.goalId, item.color]);
             }
         });
