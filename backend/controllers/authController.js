@@ -3,6 +3,7 @@ import { v4 as uuidv4 } from 'uuid';
 import jwt from 'jsonwebtoken';
 import User from '../models/User.js';
 import Goal from '../models/Goal.js';
+import PomodoroSetting from '../models/PomodoroSetting.js';
 
 const signUpUser = async (req, res) => {
     const { nickname, email, password, socialMediaId, socialMediaType } =
@@ -37,9 +38,18 @@ const signUpUser = async (req, res) => {
             socialMediaId: socialMediaId || uuidv4(),
             socialMediaType: socialMediaType || null,
         });
-
         await user.save();
-        res.status(201).json({ message: 'User registered successfully', user });
+
+        const pomodoroSetting = new PomodoroSetting({
+            userId: user._id,
+        });
+        await pomodoroSetting.save();
+
+        res.status(201).json({
+            message: 'User registered successfully',
+            user,
+            pomodoroSetting,
+        });
     } catch (error) {
         console.error('Server error:', error);
         res.status(500).json({ message: 'Server error', error: error.message });
@@ -72,11 +82,16 @@ const signInUser = async (req, res) => {
 
         const goals = await Goal.find({ userId: user._id });
 
+        const pomodoroSetting = await PomodoroSetting.find({
+            userId: user._id,
+        });
+
         return res.status(200).json({
             message: 'Login successful',
             token,
             user,
             goals,
+            pomodoroSetting,
         });
     } catch (error) {
         console.error('Server error:', error);

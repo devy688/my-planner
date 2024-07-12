@@ -15,8 +15,9 @@
     justify-content: center;
 }
 
-.timer {
-    padding: 60px 50px 50px 50px;
+.timers .timer {
+    width: 270px;
+    padding: 60px 0 50px 0;
     border-radius: 20px;
     display: flex;
     flex-direction: column;
@@ -83,6 +84,10 @@
     background-color: transparent;
     border: none;
     cursor: pointer;
+}
+
+.operator:active {
+    transform: scale(1.1);
 }
 
 .buttons {

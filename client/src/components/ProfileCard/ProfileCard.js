@@ -4,6 +4,7 @@ import axios from 'axios';
 import { Icon } from '@iconify/react';
 import { clearUser } from '../../redux/userSlice';
 import { clearGoals } from '../../redux/goalsSlice';
+import { clearPomodoroSetting } from '../../redux/pomodoroSettingSlice';
 import './ProfileCard.css';
 
 export default function ProfileCard() {
@@ -16,6 +17,7 @@ export default function ProfileCard() {
             await axios.get('/api/auth/logout');
             dispatch(clearUser());
             dispatch(clearGoals());
+            dispatch(clearPomodoroSetting());
             navigate('/login');
         } catch (error) {
             console.error('Logout error:', error);

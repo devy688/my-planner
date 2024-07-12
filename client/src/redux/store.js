@@ -4,10 +4,12 @@ import storage from 'redux-persist/lib/storage';
 import { combineReducers } from 'redux';
 import userReducer from './userSlice';
 import goalsReducer from './goalsSlice';
+import pomodoroSettingReducer from './pomodoroSettingSlice';
 
 const rootReducer = combineReducers({
     user: userReducer,
     goals: goalsReducer,
+    pomodoroSetting: pomodoroSettingReducer,
 });
 
 const persistConfig = {

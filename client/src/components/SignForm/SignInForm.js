@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import axios from 'axios';
 import { setUser } from '../../redux/userSlice';
 import { setGoals } from '../../redux/goalsSlice';
+import { setPomodoroSetting } from '../../redux/pomodoroSettingSlice';
 
 export default function SignInForm() {
     const navigate = useNavigate();
@@ -35,6 +36,7 @@ export default function SignInForm() {
             console.log('axios /sign-in >>> ', response.data.message);
             dispatch(setUser(response.data.user));
             dispatch(setGoals(response.data.goals));
+            dispatch(setPomodoroSetting(response.data.pomodoroSetting));
 
             navigate('/todo/list');
         } catch (error) {

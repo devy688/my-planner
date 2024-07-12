@@ -4,8 +4,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
 import Nav from '../../components/Nav/Nav';
 import ProfileCard from '../../components/ProfileCard/ProfileCard';
-import { fetchGoals } from '../../redux/goalsSlice';
 import { setUser } from '../../redux/userSlice';
+import { fetchGoals } from '../../redux/goalsSlice';
+import { fetchPomodoroSetting } from '../../redux/pomodoroSettingSlice';
 import './Todo.css';
 
 export default function Todo() {
@@ -31,7 +32,6 @@ export default function Todo() {
                         `/api/auth/${socialLogin}/user`
                     );
                     const user = response.data;
-
                     dispatch(setUser(user));
                 } catch (error) {
                     console.error('Error fetching user data:', error);
@@ -46,7 +46,7 @@ export default function Todo() {
         }
     }, [dispatch, navigate]);
 
-    // 소셜 미디어 리덕스 스토어에 fetchGoals, fetchLists
+    // 소셜 미디어 리덕스 스토어에 fetchGoals, fetchPomodoroSetting
     useEffect(() => {
         const socialLogin = getCookie('socialLogin');
 
@@ -54,6 +54,7 @@ export default function Todo() {
             async function fetchData() {
                 if (user?._id) {
                     await dispatch(fetchGoals(user._id));
+                    await dispatch(fetchPomodoroSetting(user._id));
                     setLoading(false);
                 }
             }

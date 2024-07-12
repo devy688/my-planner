@@ -3,7 +3,7 @@ import Calendar from '../../components/Calendar/Calendar';
 import TodoForm from '../../components/TodoForm/TodoForm';
 import './List.css';
 
-export default function List() {
+export default function List({ handlePomodoroLayer }) {
     const [selectedDate, setSelectedDate] = useState(new Date());
     const [isTodoUpdated, setIsTodoUpdated] = useState(false);
 
@@ -29,6 +29,7 @@ export default function List() {
                     <TodoForm
                         selectedDate={selectedDate}
                         handleTodoUpdate={handleTodoUpdate}
+                        handlePomodoroLayer={handlePomodoroLayer}
                     />
                 </div>
             </div>
