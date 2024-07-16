@@ -209,7 +209,10 @@ export default function TodoForm(props) {
         }
     };
 
-    const startPoromodo = () => {};
+    const startPoromodo = (categroyId) => {
+        props.handlePomodoroLayer(true);
+        props.handleTaskId(categroyId);
+    };
 
     return (
         <div className='category-list' ref={containerRef}>
@@ -297,7 +300,7 @@ export default function TodoForm(props) {
                                             icon='mingcute:play-fill'
                                             className='icon play'
                                             onClick={() => {
-                                                startPoromodo();
+                                                startPoromodo(category.id);
                                             }}
                                         />
                                         <Icon

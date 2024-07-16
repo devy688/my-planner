@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import './App.css';
+import Pomodoro from './components/Pomodoro/Pomodoro';
 import SignInForm from './components/SignForm/SignInForm';
 import SignUpForm from './components/SignForm/SignUpForm';
 import Todo from './pages/Todo/Todo';
@@ -55,7 +56,9 @@ function App() {
         },
     ];
 
-    let [type, setType] = useState('sign-in');
+    const [type, setType] = useState('sign-in');
+    const [pomodoroLayer, setPomodoroLayer] = useState(false);
+    const [taskId, setTaskId] = useState('');
 
     const handleClick = (text) => {
         if (text !== type) {
@@ -69,6 +72,9 @@ function App() {
 
     return (
         <div className='App'>
+            {pomodoroLayer ? (
+                <Pomodoro setPomodoroLayer={setPomodoroLayer} taskId={taskId} />
+            ) : null}
             <div className={containerClass} id='container'>
                 <Routes>
                     <Route
@@ -123,7 +129,15 @@ function App() {
                         }
                     />
                     <Route path='/todo' element={<Todo />}>
-                        <Route path='list' element={<List />} />
+                        <Route
+                            path='list'
+                            element={
+                                <List
+                                    handlePomodoroLayer={setPomodoroLayer}
+                                    handleTaskId={setTaskId}
+                                />
+                            }
+                        />
                         <Route path='goals' element={<Goals />} />
                         <Route
                             path='timer-setting'
