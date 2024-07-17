@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { setUser } from '../../redux/userSlice';
 import { setPomodoroSetting } from '../../redux/pomodoroSettingSlice';
+import { setSelectedDateForPomodoro } from '../../redux/selectedDateSlice';
 import axios from 'axios';
 
 export default function SignUpForm() {
@@ -69,6 +70,7 @@ export default function SignUpForm() {
             console.log('axios /sign-up >>> ', response.data.message);
             dispatch(setUser(response.data.user));
             dispatch(setPomodoroSetting(response.data.pomodoroSetting));
+            dispatch(setSelectedDateForPomodoro(new Date()));
 
             navigate('/todo/list');
         } catch (error) {

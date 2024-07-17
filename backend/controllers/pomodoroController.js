@@ -1,7 +1,7 @@
 import Pomodoro from '../models/Pomodoro.js';
 
 const registerPomodoro = async (req, res) => {
-    const { pomodoroSettingId, date, userId, taskId, startTime, endTime } =
+    const { pomodoroSettingId, date, userId, goalId, startTime, endTime } =
         req.body;
 
     try {
@@ -9,7 +9,7 @@ const registerPomodoro = async (req, res) => {
             pomodoroSettingId,
             date,
             userId,
-            taskId,
+            goalId,
             sessionType: 'focus',
             startTime,
             endTime,

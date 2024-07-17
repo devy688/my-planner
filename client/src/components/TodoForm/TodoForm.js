@@ -211,7 +211,7 @@ export default function TodoForm(props) {
 
     const startPoromodo = (categroyId) => {
         props.handlePomodoroLayer(true);
-        props.handleTaskId(categroyId);
+        props.handleGoalId(categroyId);
     };
 
     return (

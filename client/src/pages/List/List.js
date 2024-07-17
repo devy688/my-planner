@@ -3,7 +3,7 @@ import Calendar from '../../components/Calendar/Calendar';
 import TodoForm from '../../components/TodoForm/TodoForm';
 import './List.css';
 
-export default function List({ handlePomodoroLayer, handleTaskId }) {
+export default function List({ handlePomodoroLayer, handleGoalId }) {
     const [selectedDate, setSelectedDate] = useState(new Date());
     const [isTodoUpdated, setIsTodoUpdated] = useState(false);
 
@@ -22,6 +22,7 @@ export default function List({ handlePomodoroLayer, handleTaskId }) {
                     selectedDate={selectedDate}
                     onDateChange={handleDateChange}
                     isTodoUpdated={isTodoUpdated}
+                    handlePomodoroLayer={handlePomodoroLayer}
                 />
             </div>
             <div className='task-list-layout'>
@@ -30,7 +31,7 @@ export default function List({ handlePomodoroLayer, handleTaskId }) {
                         selectedDate={selectedDate}
                         handleTodoUpdate={handleTodoUpdate}
                         handlePomodoroLayer={handlePomodoroLayer}
-                        handleTaskId={handleTaskId}
+                        handleGoalId={handleGoalId}
                     />
                 </div>
             </div>

@@ -5,6 +5,7 @@ import { Icon } from '@iconify/react';
 import { clearUser } from '../../redux/userSlice';
 import { clearGoals } from '../../redux/goalsSlice';
 import { clearPomodoroSetting } from '../../redux/pomodoroSettingSlice';
+import { clearSelectedDate } from '../../redux/selectedDateSlice';
 import './ProfileCard.css';
 
 export default function ProfileCard() {
@@ -18,6 +19,7 @@ export default function ProfileCard() {
             dispatch(clearUser());
             dispatch(clearGoals());
             dispatch(clearPomodoroSetting());
+            dispatch(clearSelectedDate());
             navigate('/login');
         } catch (error) {
             console.error('Logout error:', error);

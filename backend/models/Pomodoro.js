@@ -15,9 +15,9 @@ const PomodoroSchema = new mongoose.Schema({
         ref: 'User',
         required: true,
     },
-    taskId: {
+    goalId: {
         type: Schema.Types.ObjectId,
-        ref: 'Task',
+        ref: 'Goal',
         required: true,
     },
     sessionType: {

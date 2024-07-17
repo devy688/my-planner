@@ -5,11 +5,13 @@ import { combineReducers } from 'redux';
 import userReducer from './userSlice';
 import goalsReducer from './goalsSlice';
 import pomodoroSettingReducer from './pomodoroSettingSlice';
+import selecteDateReducer from './selectedDateSlice';
 
 const rootReducer = combineReducers({
     user: userReducer,
     goals: goalsReducer,
     pomodoroSetting: pomodoroSettingReducer,
+    selectedDate: selecteDateReducer,
 });
 
 const persistConfig = {

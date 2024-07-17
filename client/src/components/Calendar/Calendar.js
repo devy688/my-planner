@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { addMonths, subMonths } from 'date-fns';
 import axios from 'axios';
+import { setSelectedDateForPomodoro } from '../../redux/selectedDateSlice.js';
 import RenderHeader from './RenderHeader';
 import RenderDays from './RenderDays';
 import RenderCells from './RenderCells';
@@ -10,6 +11,7 @@ import './Calendar.css';
 export default function Calendar(props) {
     const user = useSelector((state) => state.user.userInfo);
     const goals = useSelector((state) => state.goals.goals);
+    const dispatch = useDispatch();
 
     const [currentMonth, setCurrentMonth] = useState(new Date());
     const [selectedDate, setSelectedDate] = useState(new Date());
@@ -59,6 +61,8 @@ export default function Calendar(props) {
         );
         props.onDateChange(lastDayOfMonth);
         setSelectedDate(lastDayOfMonth);
+        props.handlePomodoroLayer(false);
+        dispatch(setSelectedDateForPomodoro(lastDayOfMonth));
 
         await readMonthLists(selectedMonth);
     };
@@ -74,6 +78,8 @@ export default function Calendar(props) {
         );
         props.onDateChange(firstDayOfMonth);
         setSelectedDate(firstDayOfMonth);
+        props.handlePomodoroLayer(false);
+        dispatch(setSelectedDateForPomodoro(firstDayOfMonth));
 
         await readMonthLists(selectedMonth);
     };
@@ -81,6 +87,8 @@ export default function Calendar(props) {
     const onDateClick = (day) => {
         setSelectedDate(day);
         props.onDateChange(day);
+        props.handlePomodoroLayer(false);
+        dispatch(setSelectedDateForPomodoro(day));
     };
 
     return (

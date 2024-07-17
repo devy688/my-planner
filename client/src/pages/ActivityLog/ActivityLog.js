@@ -5,16 +5,33 @@ import TotalTimeSummary from '../../components/TotalTimeSummary/TotalTimeSummary
 import '../../components/Calendar/Calendar.css';
 import './ActivityLog.css';
 
-export default function ActivityLog(props) {
+export default function ActivityLog() {
+    const [selectedDate, setSelectedDate] = useState(new Date());
+    const [isTodoUpdated] = useState(false);
+
+    const handleDateChange = (date) => {
+        setSelectedDate(date);
+    };
+
     return (
         <div className='activity-log-container'>
             <div className='calendar-layout'>
-                <Calendar />
+                <Calendar
+                    selectedDate={selectedDate}
+                    onDateChange={handleDateChange}
+                    isTodoUpdated={isTodoUpdated}
+                />
             </div>
             <div className='activity-log-division-line'></div>
             <div className='timetable-layout'>
-                <TimeTable />
-                <TotalTimeSummary todoData={props.todoData} />
+                <TimeTable
+                    selectedDate={selectedDate}
+                    onDateChange={handleDateChange}
+                />
+                <TotalTimeSummary
+                    selectedDate={selectedDate}
+                    onDateChange={handleDateChange}
+                />
             </div>
         </div>
     );

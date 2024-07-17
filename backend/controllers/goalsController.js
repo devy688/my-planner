@@ -1,5 +1,6 @@
 import Goal from '../models/Goal.js';
 import List from '../models/List.js';
+import Pomodoro from '../models/Pomodoro.js';
 
 const readGoals = async (req, res) => {
     const { userId } = req.body;
@@ -81,6 +82,7 @@ const deleteGoal = async (req, res) => {
         }
 
         await List.deleteMany({ goalId: id });
+        await Pomodoro.deleteMany({ goalId: id });
 
         res.json({
             message: 'Goal deleted successfully',

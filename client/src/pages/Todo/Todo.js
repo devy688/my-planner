@@ -7,6 +7,7 @@ import ProfileCard from '../../components/ProfileCard/ProfileCard';
 import { setUser } from '../../redux/userSlice';
 import { fetchGoals } from '../../redux/goalsSlice';
 import { fetchPomodoroSetting } from '../../redux/pomodoroSettingSlice';
+import { setSelectedDateForPomodoro } from '../../redux/selectedDateSlice';
 import './Todo.css';
 
 export default function Todo() {
@@ -55,6 +56,7 @@ export default function Todo() {
                 if (user?._id) {
                     await dispatch(fetchGoals(user._id));
                     await dispatch(fetchPomodoroSetting(user._id));
+                    dispatch(setSelectedDateForPomodoro(new Date()));
                     setLoading(false);
                 }
             }

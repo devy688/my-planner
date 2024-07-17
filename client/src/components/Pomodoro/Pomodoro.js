@@ -9,7 +9,7 @@ const ActionTypes = Object.freeze({
     LONG_BREAK: 'long_break',
 });
 
-export default function Pomodoro({ setPomodoroLayer, taskId }) {
+export default function Pomodoro({ handlePomodoroLayer, goalId }) {
     const user = useSelector((state) => state.user.userInfo);
     const pomodoroSetting = useSelector(
         (state) => state.pomodoroSetting.pomodoroSetting
@@ -27,7 +27,7 @@ export default function Pomodoro({ setPomodoroLayer, taskId }) {
     const [sessions, setSessions] = useState(0);
 
     const handleCancelPomodoro = () => {
-        setPomodoroLayer(false);
+        handlePomodoroLayer(false);
         setCycles(0);
         setMode(ActionTypes.FOCUS);
     };
@@ -47,7 +47,7 @@ export default function Pomodoro({ setPomodoroLayer, taskId }) {
             pomodoroSettingId: pomodoroSetting._id,
             date: new Date(),
             userId: user._id,
-            taskId,
+            goalId,
             startTime: startTime,
             endTime: endTime,
         });
