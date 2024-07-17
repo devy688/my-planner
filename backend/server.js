@@ -11,6 +11,7 @@ import goalsRoutes from './routes/goalsRoutes.js';
 import listsRoutes from './routes/listsRoutes.js';
 import pomodoroSettingRoutes from './routes/pomodoroSettingRoutes.js';
 import pomodoroRoutes from './routes/pomodoroRoutes.js';
+import timeTableRoutes from './routes/timeTableRoutes.js';
 
 dotenv.config();
 connectDB();
@@ -37,6 +38,9 @@ app.use('/api/lists', listsRoutes);
 // 뽀모도로
 app.use('/api/pomodoro-setting', pomodoroSettingRoutes);
 app.use('/api/pomodoro', pomodoroRoutes);
+
+// 타임테이블
+app.use('/api/time-table', timeTableRoutes);
 
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, '../client/build/index.html'));

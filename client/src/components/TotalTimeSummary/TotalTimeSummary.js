@@ -1,19 +1,57 @@
+import { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import axios from 'axios';
 import './TotalTimeSummary.css';
 
-export default function TotalTimeSummary({ todoData }) {
+export default function TotalTimeSummary(props) {
+    const user = useSelector((state) => state.user.userInfo);
+    const goals = useSelector((state) => state.goals.goals);
+    const [goalsWithTotalTimeSummary, setGoalsWithTotalTimeSummary] = useState(
+        []
+    );
+
+    useEffect(() => {
+        async function fetchData() {
+            try {
+                const response = await axios.post(
+                    '/api/time-table/read/totalTimeSummary',
+                    {
+                        userId: user._id,
+                        goals,
+                        date: props.selectedDate,
+                    }
+                );
+
+                setGoalsWithTotalTimeSummary(
+                    response.data.goalsForTotalTimeSummary
+                );
+            } catch (error) {
+                console.error('error >>> ', error);
+                alert(
+                    '/api/total-time-summary/read 호출 중 에러가 발생하였습니다.'
+                );
+            }
+        }
+        fetchData();
+    });
+
     return (
         <div className='total-time-summary'>
             <ul className='summary-list'>
-                {todoData.map((todo, index) => {
+                {goalsWithTotalTimeSummary.map((goal, index) => {
                     return (
                         <li className='item' key={index}>
-                            <span className={`title ${todo.color}`}>
-                                {todo.title}
+                            <span
+                                className='title'
+                                style={{ color: goal.color }}
+                            >
+                                {goal.title}
                             </span>
-                            {todo.totalPomodoroTime > 0 ? (
+                            {goal.totalPomodoroTime > 0 ? (
                                 <span className='time'>
-                                    {Math.floor(todo.totalPomodoroTime / 60)}
-                                    시간 {todo.totalPomodoroTime % 60}분
+                                    {Math.floor(goal.totalPomodoroTime / 3600)}
+                                    시간 {(goal.totalPomodoroTime % 3600) / 60}
+                                    분
                                 </span>
                             ) : (
                                 <span className='time'></span>
