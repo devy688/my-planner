@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Icon } from '@iconify/react';
 import axios from 'axios';
-import { setLists } from '../../redux/listsSlice';
 import './TodoForm.css';
 
 export default function TodoForm(props) {
@@ -35,7 +34,6 @@ export default function TodoForm(props) {
                     response.data.message
                 );
 
-                dispatch(setLists(response.data.goalsWithLists));
                 setCategories(response.data.goalsWithLists);
             } catch (error) {
                 console.error('error >>> ', error);

@@ -16,7 +16,7 @@ export default function TimerSetting() {
     const pomodoroSetting = useSelector(
         (state) => state.pomodoroSetting.pomodoroSetting
     );
-    const timerData = pomodoroSetting[0];
+    const timerData = pomodoroSetting[0] || pomodoroSetting;
 
     const convertTime = (time) => {
         let beforeConvert = time / 60;

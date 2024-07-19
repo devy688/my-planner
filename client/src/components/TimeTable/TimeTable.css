@@ -19,6 +19,7 @@
 }
 
 .timetable-cell {
+    display: flex;
     background-color: var(--white-color);
     height: 17px;
     border: 0.25px solid var(--medium-grey-color);
@@ -32,4 +33,10 @@
 
 .timetable-row > .timetable-cell:nth-of-type(7) {
     border-right: 0.25px solid var(--medium-grey-color);
+}
+
+.minute-cell {
+    flex: 1;
+    border: none;
+    opacity: 0.9;
 }

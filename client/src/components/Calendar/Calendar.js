@@ -61,7 +61,11 @@ export default function Calendar(props) {
         );
         props.onDateChange(lastDayOfMonth);
         setSelectedDate(lastDayOfMonth);
-        props.handlePomodoroLayer(false);
+
+        if (props.handlePomodoroLayer) {
+            props.handlePomodoroLayer(false);
+        }
+
         dispatch(setSelectedDateForPomodoro(lastDayOfMonth));
 
         await readMonthLists(selectedMonth);
@@ -78,7 +82,11 @@ export default function Calendar(props) {
         );
         props.onDateChange(firstDayOfMonth);
         setSelectedDate(firstDayOfMonth);
-        props.handlePomodoroLayer(false);
+
+        if (props.handlePomodoroLayer) {
+            props.handlePomodoroLayer(false);
+        }
+
         dispatch(setSelectedDateForPomodoro(firstDayOfMonth));
 
         await readMonthLists(selectedMonth);
@@ -87,7 +95,11 @@ export default function Calendar(props) {
     const onDateClick = (day) => {
         setSelectedDate(day);
         props.onDateChange(day);
-        props.handlePomodoroLayer(false);
+
+        if (props.handlePomodoroLayer) {
+            props.handlePomodoroLayer(false);
+        }
+
         dispatch(setSelectedDateForPomodoro(day));
     };
 

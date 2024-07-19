@@ -1,4 +1,3 @@
-import User from '../models/User.js';
 import PomodoroSetting from '../models/PomodoroSetting.js';
 
 const readPomodoroSetting = async (req, res) => {

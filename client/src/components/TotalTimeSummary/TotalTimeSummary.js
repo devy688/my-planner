@@ -14,7 +14,7 @@ export default function TotalTimeSummary(props) {
         async function fetchData() {
             try {
                 const response = await axios.post(
-                    '/api/time-table/read/totalTimeSummary',
+                    '/api/activity-log/total-time-summary/read',
                     {
                         userId: user._id,
                         goals,
@@ -28,12 +28,12 @@ export default function TotalTimeSummary(props) {
             } catch (error) {
                 console.error('error >>> ', error);
                 alert(
-                    '/api/total-time-summary/read 호출 중 에러가 발생하였습니다.'
+                    '/api/activity-log/total-time-summary/read 호출 중 에러가 발생하였습니다.'
                 );
             }
         }
         fetchData();
-    });
+    }, [goals, props.selectedDate, user._id]);
 
     return (
         <div className='total-time-summary'>

@@ -40,7 +40,7 @@ app.use('/api/pomodoro-setting', pomodoroSettingRoutes);
 app.use('/api/pomodoro', pomodoroRoutes);
 
 // 타임테이블
-app.use('/api/time-table', timeTableRoutes);
+app.use('/api/activity-log', timeTableRoutes);
 
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, '../client/build/index.html'));

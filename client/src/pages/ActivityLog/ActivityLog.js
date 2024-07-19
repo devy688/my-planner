@@ -24,14 +24,8 @@ export default function ActivityLog() {
             </div>
             <div className='activity-log-division-line'></div>
             <div className='timetable-layout'>
-                <TimeTable
-                    selectedDate={selectedDate}
-                    onDateChange={handleDateChange}
-                />
-                <TotalTimeSummary
-                    selectedDate={selectedDate}
-                    onDateChange={handleDateChange}
-                />
+                <TimeTable selectedDate={selectedDate} />
+                <TotalTimeSummary selectedDate={selectedDate} />
             </div>
         </div>
     );

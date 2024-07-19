@@ -1,8 +1,12 @@
 import express from 'express';
-import { readTotalTimeSummary } from '../controllers/timeTableController.js';
+import {
+    readTotalTimeSummary,
+    readTimeTable,
+} from '../controllers/timeTableController.js';
 
 const router = express.Router();
 
-router.post('/read/totalTimeSummary', readTotalTimeSummary);
+router.post('/total-time-summary/read', readTotalTimeSummary);
+router.post('/time-table/read', readTimeTable);
 
 export default router;
