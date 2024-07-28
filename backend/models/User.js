@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-const defaultProfileImage = '/default-profile.png';
+const defaultProfileImage = '/images/default-profile.png';
 
 const UserSchema = new mongoose.Schema(
     {

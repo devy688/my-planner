@@ -1,10 +1,28 @@
-import { createSlice } from '@reduxjs/toolkit';
+import axios from 'axios';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
 const initialState = {
     userInfo: {},
     loading: false,
     error: null,
 };
+
+export const updateUserAsync = createAsyncThunk(
+    'user/updateUserAsync',
+    async ({ formData }, thunkAPI) => {
+        try {
+            const response = await axios.post('/api/user/update', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                },
+            });
+
+            return response.data.updatedUser;
+        } catch (error) {
+            return thunkAPI.rejectWithValue(error.response.data);
+        }
+    }
+);
 
 export const userSlice = createSlice({
     name: 'user',
@@ -27,6 +45,22 @@ export const userSlice = createSlice({
             state.error = action.payload;
             state.loading = false;
         },
+    },
+    extraReducers: (builder) => {
+        builder
+            // Update goal
+            .addCase(updateUserAsync.pending, (state) => {
+                state.loading = true;
+                state.error = null;
+            })
+            .addCase(updateUserAsync.fulfilled, (state, action) => {
+                state.userInfo = action.payload;
+                state.loading = false;
+            })
+            .addCase(updateUserAsync.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.payload;
+            });
     },
 });
 

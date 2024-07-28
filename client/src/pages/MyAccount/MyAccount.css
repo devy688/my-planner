@@ -28,6 +28,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    border-radius: 50%;
 }
 
 .update-photo {
@@ -45,7 +46,7 @@
 
 .my-account-panel .info {
     width: 100%;
-    margin-top: 30px;
+    margin-top: 50px;
     display: flex;
     flex-direction: column;
     align-items: center;
