@@ -119,13 +119,13 @@ export default function TodoForm(props) {
         }
     };
 
-    const updateTodo = async (categoryId, listId) => {
+    const updateTodo = async (categoryId, listId, text) => {
         try {
             const response = await axios.post('/api/lists/update', {
                 userId: user._id,
                 goalId: categoryId,
                 listId,
-                name: updateTodoText,
+                name: updateTodoText || text,
             });
             console.log('axios /api/lists/update >>> ', response.data.message);
 
@@ -278,7 +278,8 @@ export default function TodoForm(props) {
                                                     if (e.key === 'Enter') {
                                                         updateTodo(
                                                             category.id,
-                                                            list.id
+                                                            list.id || list._id,
+                                                            e.target.value
                                                         );
                                                     }
                                                 }}
