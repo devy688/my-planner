@@ -12,14 +12,13 @@
     max-height: 380px;
 }
 
-.tactivity-log-division-line {
+.activity-log-container .division-line {
     width: 2px;
     background-color: var(--medium-grey-color);
 }
 
 .timetable-layout {
-    width: 47%;
+    width: 42%;
     display: flex;
-    justify-content: space-evenly;
     align-items: center;
 }

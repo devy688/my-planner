@@ -22,7 +22,7 @@ export default function ActivityLog() {
                     isTodoUpdated={isTodoUpdated}
                 />
             </div>
-            <div className='activity-log-division-line'></div>
+            <div className='division-line'></div>
             <div className='timetable-layout'>
                 <TimeTable selectedDate={selectedDate} />
                 <TotalTimeSummary selectedDate={selectedDate} />

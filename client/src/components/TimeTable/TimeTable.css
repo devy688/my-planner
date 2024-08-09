@@ -4,6 +4,7 @@
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     background-color: var(--medium-grey-color);
+    margin-left: 20px;
 }
 
 .timetable-row {
