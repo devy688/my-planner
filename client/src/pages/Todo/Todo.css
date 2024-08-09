@@ -1,5 +1,11 @@
 .authenticated-container {
-    position: relative;
+    /* position: relative; */
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 1000px; /* 원하는 최대 너비 */
+    margin: 0 auto;
+    box-sizing: border-box;
 }
 
 .loading {

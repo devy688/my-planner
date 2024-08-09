@@ -67,7 +67,7 @@ form {
     border-radius: 20px;
     background-color: var(--very-light-grey-color);
     box-shadow: 0 14px 28px rgba(0, 0, 0, 0.2), 0 10px 10px rgba(0, 0, 0, 0.1);
-    position: relative;
+    display: flex;
 }
 
 .form-container {
@@ -219,7 +219,6 @@ form {
 
 .overlay-container {
     position: absolute;
-    top: 0;
     left: 50%;
     width: 50%;
     height: 100%;
@@ -452,4 +451,8 @@ form {
     .social-login .description {
         font-size: 18px;
     }
+}
+
+/* 1000px 이하일 때 navbar 미디어 쿼리 */
+@media screen and (min-width: 450px) and (max-width: 1000px) {
 }

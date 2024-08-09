@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
+import { Icon } from '@iconify/react';
 import './Nav.css';
 
 export default function Nav() {
@@ -22,7 +23,10 @@ export default function Nav() {
                     handleActiveItem('list');
                 }}
             >
-                할 일
+                <Icon
+                    icon='icon-park-outline:list'
+                    // className='icon '
+                />
             </li>
             <li
                 className={`list ${activeItem === 'goals' ? 'active' : ''}`}
@@ -31,7 +35,11 @@ export default function Nav() {
                     handleActiveItem('goals');
                 }}
             >
-                목표 관리
+                <Icon
+                    icon='lucide:goal'
+                    // className='icon '
+                />
+                {/* 목표 관리 */}
             </li>
             <li
                 className={`list ${
@@ -42,7 +50,11 @@ export default function Nav() {
                     handleActiveItem('timer-setting');
                 }}
             >
-                타이머 셋팅
+                <Icon
+                    icon='material-symbols:timer-outline'
+                    // className='icon '
+                />
+                {/* 타이머 셋팅 */}
             </li>
             <li
                 className={`list ${
@@ -53,7 +65,11 @@ export default function Nav() {
                     handleActiveItem('activity-log');
                 }}
             >
-                타임 테이블
+                <Icon
+                    icon='mdi:timetable'
+                    // className='icon '
+                />
+                {/* 타임 테이블 */}
             </li>
             <li
                 className={`list ${
@@ -64,7 +80,11 @@ export default function Nav() {
                     handleActiveItem('my-account');
                 }}
             >
-                내 계정
+                <Icon
+                    icon='mdi:account-outline'
+                    // className='icon '
+                />
+                {/* 내 계정 */}
             </li>
         </nav>
     );
