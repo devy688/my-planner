@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
-import './Pomodoro.css';
 
 const ActionTypes = Object.freeze({
     FOCUS: 'focus',
@@ -16,7 +15,8 @@ export default function Pomodoro({ handlePomodoroLayer, goalId }) {
     )[0];
 
     const [timeRemaining, setTimeRemaining] = useState(
-        pomodoroSetting.focusTime
+        // pomodoroSetting.focusTime
+        5
     );
     const [mode, setMode] = useState(ActionTypes.FOCUS);
     const [background, setBackground] = useState('#94b2ec');
