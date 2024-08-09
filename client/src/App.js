@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import './App.css';
 import Pomodoro from './components/Pomodoro/Pomodoro';
 import SignInForm from './components/SignForm/SignInForm';
 import SignUpForm from './components/SignForm/SignUpForm';
@@ -11,6 +10,7 @@ import Goals from './pages/Goals/Goals';
 import TimerSetting from './pages/TimerSetting/TimerSetting';
 import ActivityLog from './pages/ActivityLog/ActivityLog';
 import MyAccount from './pages/MyAccount/MyAccount';
+import './App.css';
 
 function App() {
     const selectedDate = useSelector(
@@ -28,7 +28,8 @@ function App() {
     };
 
     const containerClass =
-        'container ' + (type === 'sign-up' ? 'right-panel-active' : '');
+        'container ' +
+        (type === 'sign-up' ? 'right-panel-active' : 'left-panel-active');
 
     const isSameDateForPomodoro = () => {
         let dateInRedux = new Date(selectedDate);

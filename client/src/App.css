@@ -114,6 +114,7 @@ form {
     opacity: 1;
     z-index: 5;
     animation: show 0.6s;
+    animation-fill-mode: forwards;
 }
 
 @keyframes show {
@@ -140,6 +141,10 @@ form {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+.description {
+    line-height: 1.5; /* 기본 줄 높이 설정 */
 }
 
 .social-login .description {
@@ -346,4 +351,105 @@ form {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+/* 기본 스타일 설정 */
+.sign-in-container,
+.overlay-container,
+.overlay-right .description,
+.overlay-right .white-button,
+.sign-in-button {
+    transition: all 0.6s ease-in-out;
+}
+
+/* 로그인, 회원가입 미디어 쿼리 */
+@media screen and (min-width: 450px) and (max-width: 800px) {
+    .left-panel-active .sign-in-container {
+        width: 65%;
+    }
+
+    .left-panel-active .overlay-container {
+        left: 65%;
+        width: 35%;
+    }
+
+    .overlay-panel .description {
+        width: 95%;
+        font-size: 16px;
+    }
+
+    .overlay-right .white-button {
+        padding: 10px 25px;
+    }
+
+    .sign-in-button {
+        padding: 10px 25px;
+    }
+
+    .right-panel-active .overlay-container {
+        left: 35%;
+        width: 35%;
+    }
+
+    .right-panel-active .sign-up-container {
+        transform: translateX(85%) !important;
+    }
+
+    .overlay-left .white-button {
+        padding: 10px 25px;
+    }
+
+    .sign-up-button {
+        padding: 10px 25px;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .left-panel-active .sign-in-container {
+        width: 65%;
+    }
+
+    .left-panel-active .overlay-container {
+        left: 65%;
+        width: 35%;
+    }
+
+    .overlay-panel .description {
+        width: 95%;
+        font-size: 16px;
+    }
+
+    .overlay-right .white-button {
+        padding: 10px 25px;
+    }
+
+    .sign-in-button {
+        padding: 10px 25px;
+    }
+
+    .right-panel-active .overlay-container {
+        left: 35%;
+        width: 35%;
+    }
+
+    .right-panel-active .sign-up-container {
+        transform: translateX(85%) !important;
+    }
+
+    .overlay-left .white-button {
+        padding: 10px 25px;
+    }
+
+    .sign-up-button {
+        padding: 10px 25px;
+    }
+
+    .overlay-panel .title,
+    .sign-in-text {
+        font-size: 25px;
+    }
+
+    .social-login .description {
+        font-size: 18px;
+    }
 }
