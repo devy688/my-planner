@@ -70,7 +70,7 @@ function App() {
                                                 to use my planner
                                             </div>
                                             <button
-                                                className='white-button'
+                                                className='white-button sign-in-button'
                                                 id='sign-in'
                                                 onClick={() => {
                                                     handleClick('sign-in');
@@ -89,7 +89,7 @@ function App() {
                                                 to use my planner
                                             </div>
                                             <button
-                                                className='white-button'
+                                                className='white-button sign-up-button'
                                                 id='sign-up'
                                                 onClick={() => {
                                                     handleClick('sign-up');

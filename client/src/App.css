@@ -68,6 +68,7 @@ form {
     background-color: var(--very-light-grey-color);
     box-shadow: 0 14px 28px rgba(0, 0, 0, 0.2), 0 10px 10px rgba(0, 0, 0, 0.1);
     position: relative;
+    display: flex;
 }
 
 .form-container {
@@ -219,7 +220,6 @@ form {
 
 .overlay-container {
     position: absolute;
-    top: 0;
     left: 50%;
     width: 50%;
     height: 100%;
@@ -356,9 +356,13 @@ form {
 /* 기본 스타일 설정 */
 .sign-in-container,
 .overlay-container,
-.overlay-right .description,
-.overlay-right .white-button,
-.sign-in-button {
+.overlay-panel,
+.description,
+.sign-in-button,
+.sign-up-button,
+.sign-in-text,
+.sign-up-text,
+.title {
     transition: all 0.6s ease-in-out;
 }
 
