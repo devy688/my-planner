@@ -3,8 +3,7 @@
 .goal-management-container {
     width: 100%;
     height: 100%;
-    min-height: 550px;
-    padding: 120px 30px 50px 30px;
+    padding: 15px 30px 40px 30px;
     display: flex;
     justify-content: space-between;
 }
@@ -85,13 +84,14 @@
 
 .goal-detail-panel {
     width: 47%;
-    padding: 20px;
+    justify-content: normal;
 }
 
 .goal-input {
-    width: 60%;
+    width: 70%;
     border: none;
     border-bottom: 2px solid var(--black-color);
+    margin-top: 20px;
     margin-bottom: 30px;
     background-color: transparent;
     outline: none;
@@ -109,6 +109,7 @@
     border: none;
     cursor: pointer;
     font-size: 16px;
+    transition: all 0.6s ease-in-out;
 }
 .goal-color .left-button {
     background-color: var(--light-grey-color);
@@ -118,4 +119,41 @@
 .goal-color .check-button {
     background-color: var(--medium-skyblue-color);
     color: var(--white-color);
+}
+
+@media screen and (max-width: 650px) {
+    .goal-management-container {
+        flex-direction: column;
+    }
+
+    .division-line {
+        background-color: transparent;
+    }
+
+    .goal-list-panel {
+        width: 100%;
+        overflow: visible;
+    }
+
+    .goal-list {
+        display: flex;
+        flex-wrap: wrap; /* 너비를 초과하면 다음 줄로 넘김 */
+    }
+
+    .goal-item {
+        flex: 1 1 auto; /* 내용에 따라 유연하게 크기 조절 */
+        text-align: center;
+    }
+
+    .goal-detail-panel {
+        width: 100%;
+        overflow-y: visible;
+        padding: 30px 30px 80px 30px;
+    }
+}
+
+@media screen and (max-width: 360px) {
+    .goal-color button {
+        padding: 8px 30px;
+    }
 }
