@@ -59,6 +59,7 @@ form {
     font-optical-sizing: auto;
     font-weight: 500;
     font-style: normal;
+    overflow-y: auto;
 }
 
 .container {
@@ -455,5 +456,11 @@ form {
 
     .social-login .description {
         font-size: 18px;
+    }
+}
+
+@media screen and (max-height: 580px) {
+    .container {
+        height: 100vh; /* 뷰포트 높이에 맞춤 */
     }
 }

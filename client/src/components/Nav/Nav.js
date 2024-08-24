@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
+import { Icon } from '@iconify/react';
 import './Nav.css';
 
 export default function Nav() {
@@ -22,7 +23,7 @@ export default function Nav() {
                     handleActiveItem('list');
                 }}
             >
-                할 일
+                <Icon icon='icon-park-outline:list' className='nav-icon' />
             </li>
             <li
                 className={`list ${activeItem === 'goals' ? 'active' : ''}`}
@@ -31,7 +32,7 @@ export default function Nav() {
                     handleActiveItem('goals');
                 }}
             >
-                목표 관리
+                <Icon icon='lucide:goal' className='nav-icon' />
             </li>
             <li
                 className={`list ${
@@ -42,7 +43,10 @@ export default function Nav() {
                     handleActiveItem('timer-setting');
                 }}
             >
-                타이머 셋팅
+                <Icon
+                    icon='material-symbols:timer-outline'
+                    className='nav-icon'
+                />
             </li>
             <li
                 className={`list ${
@@ -53,7 +57,7 @@ export default function Nav() {
                     handleActiveItem('activity-log');
                 }}
             >
-                타임 테이블
+                <Icon icon='mdi:timetable' className='nav-icon' />
             </li>
             <li
                 className={`list ${
@@ -64,7 +68,7 @@ export default function Nav() {
                     handleActiveItem('my-account');
                 }}
             >
-                내 계정
+                <Icon icon='mdi:account-outline' className='nav-icon' />
             </li>
         </nav>
     );

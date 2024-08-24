@@ -4,8 +4,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    position: absolute;
-    top: 0;
+    transition: all 0.7s ease;
 }
 
 .user-section {
@@ -36,5 +35,12 @@
 }
 
 .logout {
-    font-size: 36px;
+    font-size: 30px;
+}
+
+/* 프로필 카드 미디어 쿼리 */
+@media screen and (max-width: 450px) {
+    .profile-card {
+        padding: 20px;
+    }
 }
