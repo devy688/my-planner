@@ -71,10 +71,12 @@ export default function Todo() {
     }
 
     return (
-        <div className='authenticated-container'>
+        <>
             <Nav />
-            <ProfileCard />
-            <Outlet />
-        </div>
+            <div className='authenticated-container'>
+                <ProfileCard />
+                <Outlet />
+            </div>
+        </>
     );
 }

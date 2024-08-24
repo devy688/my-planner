@@ -145,3 +145,10 @@ input[type='text']:disabled {
 .green:checked {
     accent-color: var(--green-color);
 }
+
+/* 할 일 페이지 미디어 쿼리 */
+@media screen and (max-width: 750px) {
+    .category-list {
+        padding: 0 25px;
+    }
+}
