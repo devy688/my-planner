@@ -3,11 +3,12 @@
 .timer-setting-container {
     width: 100%;
     height: 100%;
-    padding: 140px 30px 50px 30px;
+    padding: 35px 30px 50px 30px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    overflow-y: auto;
 }
 
 .timers {
@@ -16,8 +17,7 @@
 }
 
 .timers .timer {
-    width: 270px;
-    padding: 60px 0 50px 0;
+    padding: 60px 30px 50px 30px;
     border-radius: 20px;
     display: flex;
     flex-direction: column;
@@ -52,9 +52,9 @@
 }
 
 .setting {
-    width: 500px;
+    width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     margin-top: 50px;
 }
 
@@ -109,4 +109,78 @@
 .buttons .check {
     background-color: var(--medium-skyblue-color);
     color: var(--very-light-grey-color);
+}
+
+.timer .time,
+.min-sec-text,
+.timer-setting-container,
+.setting-item .title {
+    transition: all 0.4s ease-in-out;
+}
+
+.timers {
+    transition: all 0.4s ease;
+}
+
+/* 타이머 셋팅 페이지 미디어 쿼리 */
+@media screen and (max-width: 850px) {
+    .timer .time {
+        font-size: 45px;
+    }
+    .min-sec-text {
+        width: 100px;
+    }
+}
+
+@media screen and (max-width: 750px) {
+    .timer .time {
+        font-size: 35px;
+    }
+    .min-sec-text {
+        width: 90px;
+    }
+}
+
+@media screen and (max-width: 650px) {
+    .timer-setting-container {
+        width: 100%;
+        padding: 30px 0;
+    }
+
+    .timer-setting-container,
+    .timers {
+        flex-direction: column;
+        justify-content: normal;
+        margin-bottom: 20px;
+    }
+
+    .focus-timer,
+    .short-break-timer {
+        margin-right: 0px;
+    }
+
+    .timers .timer {
+        margin-bottom: 20px;
+        padding: 60px 30px 50px 30px;
+    }
+
+    .timer .time {
+        font-size: 55px;
+    }
+
+    .setting {
+        font-size: 13px;
+        margin-top: 20px;
+        justify-content: space-evenly;
+    }
+
+    .min-sec-text {
+        width: 120px;
+    }
+}
+
+@media screen and (max-width: 350px) {
+    .setting-item .title {
+        font-size: 10px;
+    }
 }
