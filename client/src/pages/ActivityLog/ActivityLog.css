@@ -2,7 +2,7 @@
 
 .activity-log-container {
     width: 100%;
-    padding: 120px 30px 50px 30px;
+    padding: 10px 30px 50px 30px;
     display: flex;
     justify-content: space-between;
 }
@@ -21,4 +21,24 @@
     width: 42%;
     display: flex;
     align-items: center;
+}
+
+/* 미디어 쿼리 */
+@media screen and (max-width: 650px) {
+    .activity-log-container {
+        flex-direction: column;
+        align-items: center;
+        padding: 0;
+    }
+    .calendar-layout {
+        width: 70%;
+    }
+    .division-line {
+        background-color: transparent;
+    }
+    .timetable-layout {
+        width: 70%;
+        margin-top: 45px;
+        margin-bottom: 45px;
+    }
 }
